@@ -1,0 +1,30 @@
+---
+- include_tasks: s3.yml
+
+- name: s3_unarchive | Set archived file
+  set_fact:
+    ansistrano_archived_file: "{{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object | basename }}"
+
+- include_tasks: unarchive.yml
+
+- name: var_unarchive | Set archived file
+  set_fact:
+    ansistrano_var_archived_file: "{{ ansistrano_release_path.stdout }}/var_www_backup-{{anistrano_current_day}}-{{anistrano_current_month}}-{{anistrano_current_year}}.tar.gz"
+
+- name: apps_unarchive | Set archived file
+  set_fact:
+    ansistrano_apps_archived_file: "{{ ansistrano_release_path.stdout }}/apps-{{anistrano_current_day }}-{{anistrano_current_month}}-{{anistrano_current_year}}.tar.gz"
+
+- name: ets_unarchive | Set archived file
+  set_fact:
+    ansistrano_etc_archived_file: "{{ ansistrano_release_path.stdout }}/etc-{{anistrano_current_day}}-{{anistrano_current_month}}-{{anistrano_current_year}}.tar.gz"
+
+- name: srv_unarchive | Set archived file
+  set_fact:
+    ansistrano_srv_archived_file: "{{ ansistrano_release_path.stdout }}/srv-{{anistrano_current_day }}-{{anistrano_current_month}}-{{anistrano_current_year}}.tar.gz"
+
+- name: tomcat7_unarchive | Set archived file
+  set_fact:
+    ansistrano_tomcat7_archived_file: "{{ ansistrano_release_path.stdout }}/tomcat7-{{anistrano_current_day }}-{{anistrano_current_month}}-{{anistrano_current_year}}.tar.gz"
+
+- include_tasks: deployvar.yml

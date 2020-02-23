@@ -1,0 +1,15 @@
+---
+- name: Unarchive | Unarchive source
+  unarchive:
+    copy: no
+    src: "{{ ansistrano_archived_file }}"
+    dest: "{{ ansistrano_release_path.stdout }}"
+  delegate_to: "{{item.host}}"
+  with_items: "{{ansistrano_host}}"
+
+- name: Unarchive | Delete archived file
+  file:
+    path: "{{ ansistrano_archived_file }}"
+    state: absent
+  delegate_to: "{{item.host}}"
+  with_items: "{{ansistrano_host}}"

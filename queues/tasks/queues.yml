@@ -1,0 +1,67 @@
+---
+
+# Ensure that the vhost /test exists.
+# - name: Create vhost
+#   rabbitmq_vhost:
+#     name: "/"
+#     state: present
+
+- name: add rabbitmq user and set privileges
+  rabbitmq_user:
+    user: admin
+    password: admin
+    tags: 'administrator'
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+# 
+- name: Manage queues
+  rabbitmq_queue:
+    login_user              : "admin"
+    login_password          : "admin"
+    login_host              : "{{REDISMQHOST}}"
+    login_port              : "{{MQPORT}}"
+    vhost                   : "/"
+    name                    : "IN.{{item.1.path|upper}}.{{ item.0.name }}"
+    durable                 : "yes"
+    auto_delete             : "no"
+    #state                   : "present"
+  with_nested :
+    - "{{ queue }}"
+    - "{{ country }}"
+
+- name: Manage retry queues
+  rabbitmq_queue:
+    login_user              : "admin"
+    login_password          : "admin"
+    login_host              : "{{REDISMQHOST}}"
+    login_port              : "{{MQPORT}}"
+    vhost                   : "/"
+    name                    : "IN.{{item.1.path|upper}}.{{ item.0.name }}"
+    durable                 : "yes"
+    auto_delete             : "no"
+    dead_letter_exchange    : "{{item.path|upper}}.CPG.PAYMENTs.EXCHANGE"
+    dead_letter_routing_key : "IN.{{item.1.path|upper}}.{{ item.0.name }}"
+    message_ttl             : 5000
+    #state                   : "present"
+  with_nested :
+    - "{{ retryqueue }}"
+    - "{{ country }}"
+
+- name: Manage queue bindings
+  rabbitmq_binding:
+    login_user              : "admin"
+    login_password          : "admin"
+    login_host              : "{{REDISMQHOST}}"
+    login_port              : "{{MQPORT}}"
+    name                    : "IN.{{item.1.path|upper}}.CPG.EXCHANGE"
+    destination_type        : queue
+    destination             : "IN.{{item.1.path|upper}}.{{ item.0.name }}"
+    vhost                   : "/"
+    routing_key             : "IN.{{item.1.path|upper}}.{{ item.0.name }}"
+    state                   : "present"
+  with_nested:
+    - "{{bindings}}" 
+    - "{{country}}"

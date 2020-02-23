@@ -1,0 +1,8 @@
+- name: Copy aws configuration
+  copy:
+    src: /home/cnjiru/.aws/
+    dest: /home/vagrant/
+
+- name: S3 | Get object from S3
+  shell: aws s3 cp s3://"{{ ansistrano_s3_bucket }}"/"{{ ansistrano_s3_object }}" "{{ ansistrano_release_path.stdout }}/{{ ansistrano_s3_object | basename }}"
+

@@ -1,0 +1,54 @@
+  - name: Creates Applications directory
+    file:
+         path: '/apps/{{item.0.path}}/hub/consumers/{{item.1.name}}'
+         state: directory
+    with_nested:   
+     - "{{ country }}"
+     - "{{ content }}"
+
+  - name: Set Applications directory permissions
+    file: 
+         dest: '/apps/{{item.0.path}}/hub/consumers/{{item.1.name}}' 
+         state: directory
+         mode: 0775
+         recurse: yes 
+    with_nested:   
+     - "{{ country }}"
+     - "{{ content }}"
+
+  - name: GIT export file
+    git:
+        repo: 'https://{{ githubuser }}:{{ githubpassword }}@git.prod.cellulant.com/cpg/payments/consumers/{{item.1.name}}.git'
+        dest: '/apps/{{item.0.path}}/hub/consumers/{{item.1.name}}'
+        accept_hostkey: yes 
+    with_nested:
+     - "{{ country }}"
+     - "{{ content }}"
+     
+  - name: Creates Log directory
+    file:
+        path: '/var/log/applications/{{item.0.path}}/hub/{{item.1.name}}/'
+        state: directory
+    with_nested:   
+     - "{{ country }}"
+     - "{{ content }}"
+  - name: Set Log directory permissions
+    file: 
+         dest: '/var/log/applications/{{item.0.path}}/hub/{{item.1.name}}/' 
+         state: directory
+         mode: 0775
+         recurse: yes 
+    with_nested:   
+     - "{{ country }}"
+     - "{{ content }}"
+     
+  - name: Create Log Files
+    file:
+         path: '/var/log/applications/{{item.1.path}}/hub/{{item.0.name}}/{{item.1.path}}_{{item.0.name}}_{{item.2.kind}}.log'
+         state: touch
+         mode: 0777
+    with_nested:   
+     - "{{ content }}"
+     - "{{ country }}"
+     - "{{ log }}"
+

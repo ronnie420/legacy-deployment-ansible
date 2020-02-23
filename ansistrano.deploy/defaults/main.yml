@@ -1,0 +1,149 @@
+---
+# Path where the code to deploy is
+ansistrano_deploy_from: "{{ playbook_dir }}"
+
+# Path where the php code must be deployed to
+ansistrano_deploy_to: "/tmp"
+
+# Path where the php code must be deployed to
+ansistrano_var_archived_fileb3: "var_www_backup"
+
+# Path where the php code must be deployed to
+ansistrano_var_to: "/var/www/"
+
+# Path where the log code must be deployed to
+ansistrano_var_logs_to: "/var/log/applications"
+
+# Path where the java code must be deployed to
+ansistrano_apps_to: "/apps/"
+
+# Path where the srv code must be deployed to
+ansistrano_srv_to: "/srv/"
+
+# Path where the etc code must be deployed to
+ansistrano_etc_to: "/etc/"
+
+# Path where the srv code must be deployed to
+ansistrano_tomcat_to: "/tomcat/"
+
+# Folder name for the releases
+ansistrano_version_dir: "releases"
+
+# Full path to the releases
+ansistrano_releases_path: "{{ ansistrano_deploy_to }}/{{ ansistrano_version_dir }}"
+
+# Full path to the shared path folder
+ansistrano_shared_path: "{{ ansistrano_deploy_to }}/shared"
+
+# Softlink name for the current release
+ansistrano_current_dir: "current"
+
+# Current directory deployment strategy
+ansistrano_current_via: "symlink"
+
+# Shared paths to symlink to release dir
+ansistrano_shared_paths: []
+
+# Shared files to symlink to release dir
+ansistrano_shared_files: []
+
+# Shared paths and basedir shared files creation
+ansistrano_ensure_shared_paths_exist: yes
+ansistrano_ensure_basedirs_shared_files_exist: yes
+
+# Number of releases to keep in your hosts, if 0, unlimited releases will be kept
+ansistrano_keep_releases: 0
+
+# Deployment strategies variables
+
+# Due to runtime variable evaluation, the ansistrano_deploy_via default is actually
+# defined in update-code.yml instead of this file. You can still override it in your
+# playbook as needed.
+# ansistrano_deploy_via: "rsync"
+
+# Directory name for the checked out repository
+ansistrano_repo_dir: "repo"
+
+## GIT pull strategy
+ansistrano_git_repo: git@gitlab.com:njirucharles/cpg.git
+ansistrano_git_branch: master
+ansistrano_git_repo_tree: ""
+ansistrano_git_identity_key_path: "/root/.ssh/id_ed25519.pub"
+ansistrano_git_identity_key_remote_path: "/root/.ssh/id_ed25519.pub"
+
+## SVN pull strategy
+ansistrano_svn_repo: "http://192.168.250.45/svn/customer_activation/trunk/caviar/gui/cat/"
+ansistrano_svn_branch: ""
+ansistrano_svn_revision: "HEAD"
+ansistrano_svn_username: "charles.njiru"
+ansistrano_svn_password: "cnjiru"
+ansistrano_svn_environment: {}
+
+## HG pull strategy
+ansistrano_hg_repo: "https://USERNAME@bitbucket.org/USERNAME/REPO"
+ansistrano_hg_branch: "default"
+
+## RSYNC push strategy
+# ansistrano_rsync_extra_params: ""
+## put user@ for the remote paths. If you have a custom ssh config to define
+## the remote user for a host that does not match the inventory user,
+## you should set this parameter to "no".
+ansistrano_rsync_set_remote_user: yes
+
+anistrano_current_year: 19
+anistrano_current_month: "{{ ansible_date_time.month }}"
+#anistrano_current_day: "{{ ansible_date_time.day | int -1}}"
+anistrano_current_day : '11'
+
+## Download strategy
+ansistrano_get_url: https://s3.eu-central-1.amazonaws.com/cellulantbucket/Apps/ServerBackups/ma1-sb/2019/03/ma1-sb-BackupDownload-12-03-19.zip
+ansistrano_s3_url: https://s3.eu-central-1.amazonaws.com/cellulantbucket/Apps/ServerBackups/ma1-sb/2019/03/ma1-sb-BackupDownload-12-03-19.zip
+## S3 get strategy
+ansistrano_s3_bucket: cellulantbucket
+ansistrano_s3_object: "Apps/ServerBackups/ca1-sb/2019/{{ ansible_date_time.month }}/ca1-sb-BackupDownload-{{anistrano_current_day}}-{{ ansible_date_time.month }}-19.zip"
+ansistrano_s3_region: eu-central-1
+ansistrano_s3_rgw: false
+ansistrano_s3_aws_access_key: AKIAJAPJGR6U5OH3FLOQ 
+aws_secret_access_key : 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 
+
+## Sends anonymous stats to the www.ansistrano.com servers
+## You can disallow it by just setting this parameter to "no" in your playbook
+ansistrano_allow_anonymous_stats: no
+
+pip_version: "9.0.*"
+pip_get_pip_version: "latest"
+pip_executable: "pip"
+
+pip_package: python-pip
+
+unzip_version: "6.0*"
+
+ansistrano_core_countries:
+    - name: ke
+    - name: tz  
+    - name: ug
+    - name: zm
+    - name: bw
+    - name: mz
+    - name: rw
+    - name: gh
+    - name: zw
+    - name: mw
+    - name: nm
+
+ansistrano_logs:
+    - path: info.log
+    - path: error.log 
+    - path: debug.log
+    - path: fatal.log
+ansistrano_host:
+    - host: 192.168.0.254
+    - host: 192.168.0.3 
+
+variable1: 'Hello...!!!'
+variable2: 'My first playbook using template'
+
+DBHOST : localhost
+DBHOSTUSER : cnjiru
+DBHOSTPASSWORD : cnjiru
+MQPORT : 5672

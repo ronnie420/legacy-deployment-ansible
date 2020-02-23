@@ -1,0 +1,5 @@
+#Application setup
+- include_tasks: appsetup.yml
+
+#Applicatiion config setup
+- include_tasks: configsetup.yml

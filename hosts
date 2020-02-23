@@ -1,0 +1,14 @@
+[local]
+#127.0.0.1
+[CAppsservers]
+#10.101.11.221
+10.101.51.84 
+[MNOAppsservers]
+#10.101.11.103 
+#10.101.51.73
+[MNOjavaservers]
+#10.101.13.204
+[CAjavaservers]
+#10.101.11.89
+[MQsevers]
+10.101.11.51

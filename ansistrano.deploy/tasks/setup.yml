@@ -1,0 +1,87 @@
+---
+
+# - name: Ensure Pip is installed.
+#   apt:
+#     name: "{{ pip_package }}"
+#     state: latest
+#   delegate_to: 127.0.0.1
+
+# - name: Ensure botocore and boto3 modules are installed
+#   pip:
+#     name: [ "boto3", "botocore"]
+#     extra_args:   "--user"
+#   delegate_to: 127.0.0.1
+
+# - name: Install zip
+#   apt: 
+#     name: zip
+#     state: latest
+#   delegate_to: 127.0.0.1
+
+# - name: Install unzip
+#   apt: 
+#     name: unzip
+#     state: latest
+#   delegate_to: 127.0.0.1
+# Setup folders
+
+# - name: Ensure deployment API base path exists
+#   file:
+#     state: directory
+#     path: "{{ ansistrano_deploy_to }}"
+#   delegate_to: 127.0.0.1
+#   # when: ansible_eth1.ipv4.address not "192.168.0.254" or ansible_eth1.ipv4.address not "192.168.0.3"
+
+# - name: Ensure var/www API base path exists
+#   file:
+#     state: directory
+#     path: "{{ ansistrano_var_to }}"
+#   when: ansible_eth1.ipv4.address == "192.168.0.254"
+
+# - name: Ensure CA apps  exists
+#   file:
+#     state: directory
+#     path: "{{ ansistrano_apps_to }}"
+#   when: ansible_eth1.ipv4.address == "192.168.0.3"
+
+# - name: Ensure releases folder exists
+#   file:
+#     state: directory
+#     path: "{{ ansistrano_releases_path }}"
+#   delegate_to: 127.0.0.1
+
+# # - name: Ensure shared elements folder exists
+# #   file:
+# #     state: directory
+# #     path: "{{ ansistrano_shared_path }}"
+
+# # # Ensure shared path exists
+# # - name: Ensure shared paths exists
+# #   file:
+# #     state: directory
+# #     path: "{{ ansistrano_shared_path }}/{{ item }}"
+# #   with_items: "{{ ansistrano_shared_paths }}"
+# #   when: ansistrano_ensure_shared_paths_exist
+
+# # Ensure basedir shared files exists
+# # - name: Ensure basedir shared files exists
+# #   file:
+# #     state: directory
+# #     path: "{{ ansistrano_shared_path }}/{{ item | dirname }}"
+# #   with_items: "{{ ansistrano_shared_files }}"
+# #   when: ansistrano_ensure_basedirs_shared_files_exist
+
+# - name: Create applications log directories
+#   file:
+#     path: "{{ansistrano_var_logs_to}}/{{item.name}}/hub/"
+#     state: directory
+#     mode: 0755  
+#   when : ansible_eth1.ipv4.address == "192.168.0.254" or ansible_eth1.ipv4.address == "192.168.0.3"
+#   with_items: 
+#     - "{{ ansistrano_core_countries }}"
+
+- name: Basic Template Example
+  template:
+    src: example1.j2
+    dest: /home/vagrant/output.xml
+    force: no

@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * Beep core API functions configuration file.
+ *
+ * Contains common configuration information that will be used accross all the
+ * API files/classes.
+ *
+ * @copyright 2013 Cellulant Ltd
+ * @version 3.0.0
+ * @since 2.2.0
+ */
+class Config
+{
+    /**
+     * The base URL for all API functions.
+     */
+    //const BASE_CORE_URL = "http://localhost/Core/";
+
+    const  BASE_FETCH_INVOICES_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Fetch_Invoices/public/';
+    const  BASE_PAYMENTS_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Payments/public/';
+    const  BASE_PROFILING_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Profiling/public/';
+    const  BASE_INVOICES_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Invoices/public/';
+    const  BASE_REVERSALS_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Reversals/public/';
+    const  BASE_FETCH_PAYMENTS_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Fetch_Payments/public/';
+    const  BASE_SERVICES_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Services/public/';
+    const  BASE_LIBRARY_URL = 'http://localhost:{{item.countryport}}/hub/services/producers/coreAPI/Library/public/';
+
+    const  DEFAULT_COUNTRY = '{{item.countrycode|upper}}';
+    /**
+     * The JSON API url.
+     */
+    const BEEP_JSON_API_URL = "http://localhost:{{item.countryport}}/hub/services/paymentGateway/JSON/";
+    /**
+     * Database host name or IP address.
+     *
+     * @var string
+     */
+    const HOST = "localhost";
+    /**
+     * Database user name.
+     *
+     * @var string
+     */
+    const USER = "root";
+    /**
+     * Database password.
+     *
+     * @var string
+     */
+    const PASSWORD = "root";
+    /**
+     * Database name.
+     *
+     * @var string
+     */
+    //const DATABASE = "hubtest";
+    //const DATABASE = "hub_4_3_4";
+      const DATABASE = "hub_{{item.countrycode}}";
+    /**
+     * Database port in use.
+     *
+     * @var string
+     */
+    const PORT = "3306";
+    /**
+     * File location for info logs.
+     *
+     * @var string
+     */
+    const INFO = "/var/log/applications/{{item.countrycode}}/hub/core/{{item.countrycode}}_core_info.log";
+    /**
+     * File location for error logs.
+     *
+     * @var string
+     */
+    const ERROR = "/var/log/applications/{{item.countrycode}}/hub/core/{{item.countrycode}}_core_error.log";
+    /**
+     * File location for fatal logs.
+     *
+     * @var string
+     */
+    const FATAL = "/var/log/applications/{{item.countrycode}}/hub/core/{{item.countrycode}}_core_fatal.log";
+    /**
+     * File location for debug logs.
+     *
+     * @var string
+     */
+    const DEBUG = "/var/log/applications/{{item.countrycode}}/hub/core/{{item.countrycode}}_core_debug.log";
+}

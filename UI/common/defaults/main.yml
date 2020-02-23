@@ -1,0 +1,118 @@
+---
+# defaults file for UI
+gitRepo: git.prod.mizizi.com/cpg/ui/
+githubuser: "test_user"
+githubpassword: "1234"
+
+country:
+
+    - path: gh
+
+content:
+    - name: admin
+    - name: client
+    - name: yii-1-1-20
+
+log:
+    - kind: info
+    - kind: error
+    - kind: debug
+    - kind: fatal
+
+
+    #Database configs
+DBHOST: "ma-db.cyo4n0yy0isg.eu-west-1.rds.amazonaws.com"
+DBPORT: 3306
+MYSQL_MAX_CONNECTIONS: 100
+
+#RabbitMQ configs
+MQHOST: "rabbit-host"
+MQPORT: 5672
+
+
+#Redis configs
+REDISHOST: '127.00.1'
+REDISPORT: 6379
+REDISPASSWORD: 'uG3ajW5GqPxIYRsv'
+
+#Timeout configs
+CONNECTION_TIMEOUT: 15000
+READ_TIMEOUT: 15000
+sleeptime : 200
+replyTimeout :
+
+#Application configs
+NUMBER_OF_THREADS: 5
+beepJsonApiUrl:
+
+#DCIPs
+
+SACA: ca1-ke.dc1.mizizi.com
+SBCA: ca1-sb.dc1.mizizi.com
+SCCA: ca1-sc.dc1.mizizi.com
+SECA: ca1-se.dc1.mizizi.com
+SDCA: ca1-sd.dc1.mizizi.com
+
+#Loadbalancers configs
+CLIENTAPPSLOADBALANCER: internal-cpg-core-lb-62008288.eu-west-1.elb.amazonaws.com
+MNOAPPSLOADBALANCER:
+
+#server IPs congigs
+CLIENTAPPSIP: 127.0.0.1
+MNOAPPSIP: 127.0.0.1
+CLIENTJDAPPSIP: 127.0.0.1
+MNOAPPSJDIP: 127.0.0.1
+
+REPORTINGMICROSIP : '127.0.0.1'
+REPORTING_SERVICE_API: "http://{{REPORTINGMICROSIP}}/api/reporting/v1/"
+
+BASEFETCHINVOICES_URL: '/hub/services/producers/coreAPI/Fetch_Invoices/public/'
+BASE_PAYMENTS_URL : '/hub/services/producers/coreAPI/Payments/public/'
+BASE_PROFILING_URL: '/hub/services/producers/coreAPI/Profiling/public/'
+BASE_INVOICES_URL : '/hub/services/producers/coreAPI/Invoices/public/'
+BASE_REVERSALS_URL : '/hub/services/producers/coreAPI/Reversals/public/'
+BASE_FETCH_PAYMENTS_URL : '/hub/services/producers/coreAPI/Fetch_Payments/public/'
+BASE_SERVICES_URL: '/hub/services/producers/coreAPI/Services/public/'
+BASE_LIBRARY_URL : '/hub/services/producers/coreAPI/Library/public/'
+basebeepurl : 'hub/services/paymentGateway/JSON/'
+
+#Environment configs
+APPLICATION_ENV: 'PROD'
+REVERSALs_WRAPPER_API:
+
+#Logs configs
+LOGSLOCATION: '/var/log/applications'
+appconfiglocation : '/srv'
+
+consumersLocation : '/apps'
+consumershubLocation : '/hub/consumers'
+
+APPLICATIONCONFIGS:
+  #Ghana
+  - name : client/admin
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra" 
+    applicationconf:
+      dbuser : "hubUIClient_gh"
+      dbpassword : "jpxSG2UpA2tz9PF8"
+      defaultCountry: Ghana',
+      defaultCountryCode: GH',
+      defaultCountryID: 85', #From DB. Please check..
+      defaultDialCode: 233',
+      defaultCurrencyID: 50',
+      COUNTRY_DIAL_CODE: 233,
+  #Tanzania
+  - name : client/admin
+    countrycode: tz
+    countryport: 9010
+    countryzone: "Africa/Accra" 
+    applicationconf:
+      dbuser : "hubUIClient_tz"
+      dbpassword : "3X83nL4HjNAKgw7Y"
+      defaultCountry: Tanzania',
+      defaultCountryCode: TZ',
+      defaultCountryID: 219', #From DB. Please check..
+      defaultDialCode: 255',
+      defaultCurrencyID: 143',
+      COUNTRY_DIAL_CODE: 255,

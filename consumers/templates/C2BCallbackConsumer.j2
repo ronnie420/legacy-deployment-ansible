@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!--comment>Daemon operation settings.</comment-->
+
+    <entry key="HTTP_SUCCESS">200</entry>
+    <entry key="CONNECTION_TIMEOUT">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="READ_TIMEOUT">{{READ_TIMEOUT}}</entry>
+
+    <entry key="NUMBER_OF_THREADS">{{NUMBER_OF_THREADS}}</entry>
+
+    
+    <entry key="MAX_NUMBER_OF_SENDS">5</entry>
+    <entry key="MAX_NUMBER_OF_RETRIES">3</entry>
+    <entry key="RETRIES_CHECK">0</entry>
+    <!--Logging related settings -->
+    <entry key="INFO_LOG_LEVEL">INFO</entry>
+    <entry key="ERROR_LOG_LEVEL">ERROR</entry>
+    <entry key="INFO_LOG_LEVEL">DEBUG</entry>
+    <entry key="INFO_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/c2bcallbackconsumer/{{item.countrycode}}_c2bcallbackconsumer_info.log</entry>
+    <entry key="ERROR_LOG_FILE">"{{LOGSLOCATION}}/{{item.countrycode}}/hub/c2bcallbackconsumer/{{item.countrycode}}_c2bcallbackconsumer_error.log</entry>
+    <entry key="INVALID_MESSAGES_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/c2bcallbackconsumer/failed_messages.txt</entry>
+    <entry key="FAILED_PAYMENTS_FILEY">{{LOGSLOCATION}}/{{item.countrycode}}/hub/c2bcallbackconsumer/failedPayments.txt</entry>
+    <entry key="FAILED_QUERIES_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/c2bcallbackconsumer/failedQuerries.txt</entry>
+    <entry key="FAILED_PUBLISHING_DIRECTORY">{{LOGSLOCATION}}/{{item.countrycode}}/hub/c2bcallbackconsumer/failedPublishing/</entry>
+    <entry key="BATCH_SIZE">4</entry>
+
+
+    <!--MQ configs-->
+    <entry key="MQ_HOST">{{MQHOST}}</entry>
+    <entry key="MQ_USERNAME">{{item.applicationconf.mquser}}</entry>
+    <entry key="MQ_PASSWORD">{{item.applicationconf.mqpasword}}</entry>
+    <entry key="MQ_PORT">{{MQPORT}}</entry>
+    <entry key="MQ_EXCHANGE">{{item.countrycode|upper}}.CPG.C2B.EXCHANGE</entry>
+    <entry key="C2BQUEUE">IN.{{item.countrycode|upper}}.CPG.C2B</entry>
+    <entry key="C2BRETRIESQUEUE">IN.{{item.countrycode|upper}}.CPG.C2B.RETRIES</entry>
+    <entry key="PREFETCH_COUNT">1</entry>
+
+    <entry key="RECONNECTINTERVAL">500</entry>
+
+
+    <!--Database credentials-->
+    <entry key="DbPoolName">C2BCallbaackConsumerPool</entry>
+    <entry key="DbUserName">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DbPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DbHost">{{DBHOST}}</entry>
+    <entry key="DbPort">{{DBPORT}}</entry>
+    <entry key="DbName">hub_{{item.countrycode}}</entry>
+    <entry key="DbMaxConnections">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="DbPointer">600</entry>
+
+    <entry key="CURRENCYCODE">{{item.countrycurrency}}</entry>
+
+
+    <entry key="PAYMENT_FAILED_STATUS">138</entry>
+
+    <entry key="mullaAccountNumber">LOAN</entry>
+    <entry key="mullaServiceID">99</entry>
+    <entry key="safaricomClientSystemID">146</entry>
+    <entry key="channelRequestFinalStatus">306</entry>
+    <entry key="defaultChannelRequestExpiryPeriod">3600</entry>
+    <entry key="issueResolutionServiceID">185</entry>
+
+    <!--The application's ID in applications table -->
+    <entry key="appID">18</entry>
+    <entry key="mpesaCallbackReceivedCode">306</entry>
+    <entry key="mpesaCallbackReceivedMessage">Successfully received callback from mpesa</entry>
+    <entry key="ussdReturnCodeSuccess">00</entry>
+    <entry key="defaultMerchantConfig">811926</entry>
+
+    <!-- Post Payment API responses -->
+    <entry key="hubAuthenticationSuccess">131</entry>
+    <entry key="paymentPostSuccess">139</entry>
+    <entry key="paymentDuplicate">229</entry>
+    <entry key="paymentLoggedAsFailed">138</entry>
+    <entry key="genericPostPaymentFailure">174</entry>
+
+    <!-- other postpayment configs -->
+    <entry key="beepJsonApiUrl">http://{{CLIENTAPPSLOADBALANCER}}:{{item.countryport}}/payments/public/postPayment</entry>
+    <entry key="connectionTimeout">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="replyTimeout">{{replyTimeout}}</entry>
+    <entry key="defaultNumberOfSends">0</entry>
+    <entry key="safaricomCallbackErrorStatusCodes">11,06,29,34</entry>
+    <entry key="finalChannelRequestStatusCodes">306,307,219</entry>
+    <entry key="MPESA_PUSH_FAILURE_MESSAGE">Transaction processing failed on MPESA</entry>
+    <entry key="MPESA_POST_PAYMENT_FAILURE_MESSAGE">Failed to post MPESA payment to hub</entry>
+    <entry key="MPESA_POST_PAYMENT_FAILURE_CODE">307</entry>
+    <entry key="RETURN_CODE_NO_RESULT_FROM_BROKER_MAX_NUMBER_OF_RETRIES">10</entry>
+    <entry key="MPESA_PUSH_ESCALATED_FAILURE_MESSAGE">Transaction pending</entry>
+    <entry key="MPESA_PUSH_ESCALATED_FAILURE_CODE">219</entry>
+    <entry key="MPESA_SUCCESSFULLY_INVOKED_CONFIRM_TRANSACTION_CODE">304</entry>
+    <entry key="MPESA_SUCCESSFULLY_INVOKED_CONFIRM_TRANSACTION_MESSAGE">Succesfully invoked confirm transaction</entry>
+
+    <!-- Other configs -->
+    <entry key="FROM_BROKER">FROM_BROKER</entry>
+    <entry key="FROM_USSD">FROM_USSD</entry>
+    <entry key="FROM_STK">FROM_STK</entry>
+
+    <!-- STK configs -->
+    <entry key="STK_SUCCESS">0</entry>
+
+    <!-- Post payment -->
+    <entry key="POST_PAYMENT_FUNCTION">BEEP.postPayment</entry>
+    <entry key="FAILED_PAYMENT_FUNCTION">BEEP.logFailedPayments</entry>
+
+
+    <!-- Application settings -->
+    <entry key="applicationName">C2B CallBack Consumer</entry>
+    <entry key="countryCode">KE</entry>
+
+    <entry key="COMBINED_SERVICE_ID">71</entry>
+</properties>

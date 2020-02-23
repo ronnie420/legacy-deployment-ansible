@@ -1,0 +1,46 @@
+---
+# Look at http://docs.ansible.com/ansible/latest/rabbitmq_exchange_module.html for defaults
+# - name: Create vhost
+#   rabbitmq_vhost:
+#     name: "/"
+#     state: present
+
+- name: add rabbitmq user and set privileges
+  rabbitmq_user:
+    user: admin
+    password: admin
+    tags: 'administrator'
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+
+- name: Manage exchanges
+  rabbitmq_exchange:
+    login_user              : "admin"
+    login_password          : "admin"
+    login_host              : "{{REDISMQHOST}}"
+    login_port              : "{{MQPORT}}"
+    vhost                   : "/"
+    name                    : "IN.{{item.1.path|upper}}.{{ item.0.name }}"
+    exchange_type           : "direct"
+    durable                 : "yes"    
+    state                   : "present"
+  with_nested               : 
+   - "{{ exchange }}"
+   - "{{ country }}"
+
+- name: Manage exchanges without IN
+  rabbitmq_exchange:
+    login_user              : "admin"
+    login_password          : "admin"
+    login_host              : "{{REDISMQHOST}}"
+    login_port              : "{{MQPORT}}"
+    vhost                   : "/"
+    name                    : "{{item.path|upper}}.CPG.PAYMENTs.EXCHANGE"
+    exchange_type           : "direct"
+    durable                 : "yes"    
+    state                   : "present"
+  with_items               :
+   - "{{ country }}"

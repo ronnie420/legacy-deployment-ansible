@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="MQ_PREFETCH_COUNT">1</entry>
+    <entry key="MQ_HOST">{{MQHOST}}</entry>
+    <entry key="MQ_USERNAME">{{item.applicationconf.mquser}}</entry>
+    <entry key="MQ_PASSWORD">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="MQ_PORT">{{MQPORT}}</entry>
+    <entry key="MQ_EXCHANGE">IN.{{item.countrycode|upper}}.CPG.EXCHANGE</entry>
+    <entry key="MQ_QUEUE_NAME">IN.{{item.countrycode|upper}}.CPG.AUTOREVERSALS</entry>
+    <entry key="MQ_RETRY_QUEUE_NAME">IN.{{item.countrycode|upper}}.CPG.AUTOREVERSALS.RETRIES</entry>
+
+    <!--comment>Daemon operation settings.</comment-->
+    <entry key="HTTP_SUCCESS">200</entry>
+    <entry key="CONNECTION_TIMEOUT">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="READ_TIMEOUT">{{READ_TIMEOUT}}</entry>
+    <entry key="NUM_OF_CHILDREN_THREADS">{{NUMBER_OF_THREADS}}</entry>
+    <entry key="SLEEP_NUMBER_OF_SENDS">1000</entry> 
+    <entry key="DEFAULT_LANGUAGE">EN</entry> 
+    <entry key="COUNTRY_CODE">{{{{item.countrycode|upper}}}}</entry>
+    <entry key="REMINDER_STATUS">134</entry>
+    
+    <!--comment>Logging related settings.</comment-->
+    <entry key="INFO_LOG_LEVEL">INFO</entry>
+    <entry key="DEBUG_LOG_LEVEL">DEBUG</entry>
+    <entry key="ERROR_LOG_LEVEL">ERROR</entry>
+    <entry key="INFO_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/autoReversalConsumer/{{item.countrycode}}_autoReversalconsumer_info.log</entry>
+    <entry key="DEBUG_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/autoReversalConsumer/{{item.countrycode}}_autoReversalconsumer_debug.log</entry>
+    <entry key="ERROR_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/autoReversalConsumer/{{item.countrycode}}_autoReversalconsumer_error.log</entry>
+    <entry key="APPLICATION_ENV">{{APPLICATION_ENV}}</entry>
+    
+    <!--comment>Reversals Wrapper API related settings.</comment-->
+    <entry key="REVERSALs_WRAPPER_API">http://localhost/wrappers/clientWrappers/MNOReversalWrappers/testStub.php</entry>
+    
+    <!--comment> HUB Database Settings.</comment-->
+    <entry key="MYSQL_HOST">{{DBHOST}}</entry>
+    <entry key="MYSQL_PORT">{{DBPORT}}</entry>
+    <entry key="MYSQL_USERNAME">{{item.applicationconf.dbuser}}</entry>
+    <entry key="MYSQL_PASSWORD">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="MYSQL_DATABASE">hub_{{item.countrycode}}</entry>
+    <entry key="MYSQL_MAX_CON">5</entry>
+    
+    <!-- reporting API configs -->
+    <entry key="REPORT_FAULTS">1</entry>
+    <entry key="REPORTING_SERVICE_API">{{REPORTING_SERVICE_API}}</entry>
+    <entry key="REPORTING_SERVICE_RETRIES">2</entry> 
+    
+</properties>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Files to Handle Failures in Publishing-->
+    <entry key="FailedClientStatusFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_STATUSPUSHER.txt</entry>
+    <entry key="FailedPaymentPushFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_PAYMENTPUSHER.txt</entry>
+    <entry key="FailedRetriesFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_RECON_ACTION_RETRIES.txt</entry>
+
+    <!--Queues-->
+    <entry key="ClientStatusQueue">IN.{{item.countrycode|upper}}.CPG.STATUSPUSHER</entry>
+    <entry key="PaymentPusherQueue">IN.{{item.countrycode|upper}}.CPG.PAYMENTPUSHER</entry>
+    <entry key="RetriesQueue">IN.{{item.countrycode|upper}}.CPG.RECON.ACTION.RETRIES</entry>
+    <entry key="ReconActionQueue">IN.{{item.countrycode|upper}}.CPG.RECON.ACTION</entry>
+
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+    <entry key="NumberOfWorkerThreads">10</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">/var/log/applications/{{item.countrycode}}/hub/reconactor/{{item.countrycode}}_reconactor_info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/{{item.countrycode}}/hub/reconactor/{{item.countrycode}}_reconactor_error.log</entry>
+    <entry key="DebugLogFile">/var/log/applications/{{item.countrycode}}/hub/reconactor/{{item.countrycode}}_reconactor_debug.log</entry>
+
+    <!--Environment the Application is Running in-->
+    <entry key="Env">{{APPLICATION_ENV}}</entry>
+    <entry key="CountryCode">{{item.countrycode|upper}}</entry>
+
+    <!--RabbitMQ Configs-->
+    <entry key="RabbitMQHost">{{MQHOST}}</entry>
+    <entry key="RabbitMQPort">{{MQPOST}}</entry>
+    <entry key="RabbitMQUserName">{{item.applicationconf.mquser}}</entry>
+    <entry key="RabbitMQPassword">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    <!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry>
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_{{item.countrycode}}</entry>
+    <entry key="DBUsername">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DBPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DBMaxConnections">5</entry>
+
+    <!--Time Before the Next Try of a Record -->
+    <entry key="NextTryInterval">20</entry>
+
+    <!--Message Send Configs-->
+    <entry key="MaxNoOfSends">5</entry>
+    <entry key="TimeToNextSend">5000</entry>
+
+    <!--IDs for Missing Payment Recon Actions-->
+    <entry key="MissingPaymentsActionIDs">36,37</entry>
+
+    <!--IDs for the Various Queues to Publish to-->
+    <entry key="ClientStatusQueueID">9</entry>
+    <entry key="PaymentPushQueueID">7</entry>
+
+    <!--List of Empty Receipt Numbers IDs-->
+    <entry key="EmptyReceiptNumberValues">1,2</entry>
+
+    <!--Change State IDs that are Allowed-->
+    <entry key="CheckedChangeStates">2,3</entry>
+
+    <!--Some Description to be Used during Updates-->
+    <entry key="DefaultStatusDescription">Successfully processed</entry>
+    <entry key="SuccessfulPostPaymentDescription">Successfully posted the payment</entry>
+    <entry key="FailedPostPaymentDescription">Failed to post the payment</entry>
+    <entry key="ExceededRetriesDescription">Exceeded the number of recon retries</entry>
+
+    <!--Post Payment Configs-->
+    <entry key="PostPaymentFunction">BEEP.postPayment</entry>
+    <entry key="PostPaymentURL">http://{{CLIENTAPPSLOADBALANCER}}:{{item.countryport}}/hub/services/producers/coreAPI/payments/public/index.php/postPayment</entry>
+    <entry key="PostPaymentAPIUsername">{{postPaymentAPIusername}}</entry>
+    <entry key="PostPaymentAPIPassword">{{postPaymentAPIpassword}}</entry>
+
+    <!--Timeouts in Milliseconds-->
+    <entry key="ConnectionTimeout">5000</entry>
+    <entry key="SocketTimeout">5000</entry>
+
+    <!--Flag to Check if the Service can Consume Float-->
+    <entry key="CanConsumeFloat">1</entry>
+
+    <!--Statuses-->
+    <entry key="MissingPaymentStatus">12</entry>
+
+    <!--IDs of Combined Services -->
+    <entry key="CombinedServicesIDs">12, 12</entry>
+
+    <!-- Structured Extracts Processing Statuses -->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnProcessedStatus">0</entry>
+    <entry key="FailedStatus">3</entry>
+
+    <!--The limit of structured extracts to be fetched-->
+    <entry key="TransactionsLimit">100000</entry>
+
+    <!--Number of Records to Fetch from DB-->
+    <entry key="BucketSize">1000</entry>
+
+</properties>

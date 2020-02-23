@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>    
+    <entry key="MQ_PREFETCH_COUNT">1</entry>
+    <entry key="MQ_HOST">{{MQHOST}}</entry>
+    <entry key="MQ_USERNAME">{{item.applicationconf.mquser}}</entry>
+    <entry key="MQ_PASSWORD">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="MQ_PORT">{{MQPORT}}</entry>
+    <entry key="MQ_EXCHANGE">{{item.countrycode|upper}}.CPG.REFUNDS.EXCHANGE</entry>
+    <entry key="MQ_QUEUE_NAME">IN.{{item.countrycode|upper}}.CPG.REFUNDS</entry>
+    <entry key="MQ_RETRY_QUEUE_NAME">IN.{{item.countrycode|upper}}.CPG.REFUNDS.RETRIES</entry>
+    <entry key="MQ_MESSAGING_QUEUE_NAME">IN.{{item.countrycode|upper}}.CPG.MESSAGING</entry>
+    
+    <entry key="ERROR_REPORTING_API">{{REPORTING_SERVICE_API}}</entry>
+    
+    <!--comment>Daemon operation settings.</comment-->
+    <entry key="HTTP_SUCCESS">200</entry>
+    <entry key="CONNECTION_TIMEOUT">20000</entry>
+    <entry key="READ_TIMEOUT">105000</entry>
+    <entry key="NUM_OF_CHILDREN_THREADS">5</entry>
+    <entry key="SLEEP_NUMBER_OF_SENDS">10000</entry> 
+    <entry key="DEFAULT_LANGUAGE">EN</entry> 
+    <entry key="REMINDER_STATUS">134</entry>
+    <!--comment>Logging related settings.</comment-->
+    <entry key="INFO_LOG_LEVEL">INFO</entry>
+    <entry key="ERROR_LOG_LEVEL">ERROR</entry>
+    <entry key="INFO_LOG_FILE">/var/log/applications/{{item.countrycode}}/hub/refundsconsumer/{{item.countrycode}}_refundsconsumer_info.log</entry>
+    <entry key="ERROR_LOG_FILE">/var/log/applications/{{item.countrycode}}/hub/refundsconsumer/{{item.countrycode}}_refundsconsumer_error.log</entry>
+
+    <entry key="MYSQL_HOST">{{DBHOST}}</entry>
+    <entry key="MYSQL_PORT">{{DBPORT}}</entry>
+    <entry key="MYSQL_USERNAME">{{item.applicationconf.dbuser}}</entry>
+    <entry key="MYSQL_PASSWORD">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="MYSQL_DATABASE">hub_{{item.countrycode}}</entry> 
+    <entry key="MYSQL_MAX_CONNECTIONS">20</entry>
+    
+    <entry key="{{item.countrycode|upper}}Y_CARD">card</entry>
+    <entry key="{{item.countrycode|upper}}Y_BANK">bank</entry>
+    <entry key="{{item.countrycode|upper}}Y_MOMO">momo</entry>
+    
+    
+    
+    
+    <entry key="REFUND_PERIOD_HOURS">2400000</entry>
+    <entry key="DEFAULT_DATE_TIME_FORMAT">yyyy-MM-dd HH:mm:ss</entry>
+    
+    <entry key="REFUND_REQUEST_TYPE">REFUND</entry>
+    <entry key="REVERSAL_REQUEST_TYPE">REVERSE</entry>
+    <entry key="REFUND_PARTIAL_STATUS">290</entry>  
+    <entry key="REFUND_FULL_STATUS">291</entry>
+    <entry key="REFUND_PARTIAL_TYPE">refund</entry>
+    <entry key="REFUND_FULL_TYPE">reversal</entry>
+    <entry key="ACCEPTABLE_REFUND_CODES">140,217,139</entry>
+    <entry key="PAYMENT_POSTED_CODE">139</entry>
+    <entry key="ACCEPTABLE_REVERSAL_CODES">140,217</entry>
+    <entry key="DEFAULT_DATABASE_USER">100</entry>
+    
+    <entry key="REVERSAL_STATUS_FOR_PROCESSING">0</entry>
+    
+    <entry key="API_USER">1053</entry>
+    <entry key="ACTIVE">1</entry>
+    <entry key="ACCOUNT_MANAGER_GROUP_ID">2</entry>
+    
+    <entry key="FAILED_QUEUES_MESSAGES_FILE">/var/log/applications/{{item.countrycode}}/hub/refundsconsumer/IN_{{item.countrycode|upper}}_CPG_REFUNDS.txt</entry>
+    <entry key="FAILED_QUERIES_FILE">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/FAILED_QUERIES.txt</entry>
+
+    <entry key="DEFAULT_MESSAGE_RETRIES">10</entry>
+    
+    <entry key="FAILED_QUERIES_FILE">FAILED_QUERIES.txt</entry>
+    
+    
+    <entry key="EMAIL_FROM">no-reply@cellulant.com</entry>
+    <entry key="EMAIL_SUBJECT">REFUND AND REVERSAL REQUESTS</entry>
+    <entry key="EMAIL_MESSAGE">You have new Refunds and Reversal Notification Pending Approval..</entry>
+    
+    
+    <entry key="CPG_URL">http://ct1-sd.mau.cellulant.com:9008/hub/client/index.php/sServices/admin</entry>
+    <entry key="COUNTRY_CODE">{{item.countrycode|upper}}</entry>
+    <entry key="APPLICATION_NAME">{{item.countrycode|upper}}</entry>
+    
+    
+    
+</properties>

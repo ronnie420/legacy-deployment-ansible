@@ -1,0 +1,43 @@
+- name: Creates Applications directory
+  file:
+    path: '/var/www/html-{{item.path}}/hub/services/producers/coreAPI'
+    state: directory
+  with_items:
+    - "{{ country }}"
+
+- name: Set Applications directory permissions
+  file:
+    dest: '/var/www/html-{{item.path}}/hub/services/producers/coreAPI'
+    state: directory
+    mode: 0775
+    recurse: yes
+  with_items:
+    - "{{ country }}"
+
+- name: GIT export file
+  git:
+    repo: 'https://{{ githubuser }}:{{ githubpassword }}@git.prod.cellulant.com/cpg/payments/producers/coreapi/{{item.0.name}}.git'
+    dest: '/var/www/html-{{item.1.path}}/hub/services/producers/coreAPI/{{item.0.name}}'
+    accept_hostkey: yes
+  with_nested:
+   - "{{ content }}"
+   - "{{ country }}"
+
+
+- name: Create Log directory
+    file:
+        path: '/var/log/applications/{{item.1.path}}/hub/{{item.0.name}}/'
+        state: directory
+    with_nested:   
+     - "{{ content }}"
+     - "{{ country }}"
+
+- name: Create Log Files
+    file:
+        path: '/var/log/applications/{{item.1.path}}/hub/{{item.0.name}}/{{item.1.path}}_{{item.0.name}}_{{item.2.kind}}.log'
+        state: touch
+        mode: 0777
+    with_nested:   
+     - "{{ content }}"
+     - "{{ country }}"
+     - "{{ log }}"

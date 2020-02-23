@@ -1,0 +1,7 @@
+- name: copy application config.php files
+  template: src="{{ item.applicationconf.tempsrc }}" dest="{{appconfiglocation}}/html-{{item.countrycode}}/hub/services/producers/coreAPI/{{item.name}}/app/Configs/{{item.applicationconf.tempdest}}"
+  loop:  "{{APPLICATIONCONFIGS}}"
+
+- name: copy application env files
+  template: src="env.j2" dest="{{appconfiglocation}}/html-{{item.countrycode}}/hub/services/producers/coreAPI/{{item.name}}/.env"
+  loop:  "{{APPLICATIONCONFIGS}}"

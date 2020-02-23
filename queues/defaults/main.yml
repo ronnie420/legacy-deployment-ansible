@@ -1,0 +1,71 @@
+---
+# defaults file for queues
+
+#queues
+queue :
+    - name: "CPG.AIRTELAIRTIME"
+    - name: "CPG.AUTOREVERSALS"
+    - name: "CPG.C2B"
+    - name: "CPG.CHARGING"
+    - name: "CPG.DELAYEDPAYMENTS"
+    - name: "CPG.FRAMEWORK"
+    - name: "CPG.MESSAGING"
+    - name: "CPG.PAYMENTACK"
+    - name: "CPG.PAYMENTPUSHER"
+    - name: "CPG.POSTPAYMENT"
+    - name: "CPG.RECON.ACTION"
+    - name: "CPG.RECON.EXTRACTS"
+    - name: "CPG.RECON.UPLOADS"
+    - name: "CPG.STATUSPUSHER"
+    - name: "CPG.PAYMENTSACK"
+    - name: "CPG.REFUND"
+
+retryqueue :
+    - name: "CPG.AUTOREVERSALS.RETRIES"
+    - name: "CPG.B2C.RETRIES"
+    - name: "CPG.C2B.RETRIES"
+    - name: "CPG.CHARGING.RETRIES"
+    - name: "CPG.FRAMEWORK.RETRIES"
+    - name: "CPG.MESSAGING.RETRIES"
+    - name: "CPG.PAYMENTPUSHER.RETRIES"
+    - name: "CPG.POSTPAYMENT.RETRIES"
+    - name: "CPG.RECON.ACTION.RETRIES"
+    - name: "CPG.RECON.UPLOADS.RETRIES"
+    - name: "CPG.STATUSPUSHER.RETRIES"
+
+exchange :
+    - name : "CPG.EXCHANGE"
+    - name : "CPG.MESSAGING.EXCHANGE"
+    - name : "CPG.POSTPAYMENT"
+    - name : "CPG.POSTPAYMENT.EXCHANGE"
+    - name : "CPG.REFUNDS.EXCHANGE"
+    - name : "CPG.STATUSPUSHER.EXCHANGE"
+
+bindings:
+   - name : "CPG.AUTOREVERSALS"
+   - name : "CPG.CHARGING"
+   - name : "CPG.MESSAGING"
+   - name : "CPG.PAYMENTACK"
+   - name : "CPG.PAYMENTPUSHER"
+   - name : "CPG.POSTPAYMENT"
+   - name : "CPG.RECON.ACTION"
+   - name : "CPG.RECON.EXTRACTS"
+   - name : "CPG.RECON.UPLOADS"
+   - name : "CPG.STATUSPUSHER"
+   - name : "CPG.REFUND"
+
+rabbitmq_queues_definitions:
+ - exchange_name    : "CPG.AUTOREVERSALS.RETRIES"
+   bindings:
+     - routing_key   : "*.labels.generated"
+       exchange      : "some-exchange-1"
+       state         : present
+
+
+country:
+    - path: gh    
+    - path: tz
+    # - path: zm
+
+REDISMQHOST : '127.0.0.1'
+MQPORT : 15672

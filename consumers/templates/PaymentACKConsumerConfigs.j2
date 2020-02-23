@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Files to Handle Failures in Publishing-->
+    <entry key="FailedNotificationsFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_MESSAGING.txt</entry>
+    <entry key="FailedStatusFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_STATUSPUSHER.txt</entry>
+    <entry key="FailedReversalsFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_STATUSPUSHER.txt</entry>
+    <entry key="FailedRetriesFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_STATUSPUSHER.txt</entry>
+    <!--Queues-->
+    <entry key="ACKQueue">IN.MW.CPG.PAYMENTACK</entry>
+    <entry key="NotificationsQueue">IN.{{item.countrycode|upper}}.CPG.MESSAGING</entry>
+    <entry key="ClientStatusQueue">IN.{{item.countrycode|upper}}.CPG.STATUSPUSHER</entry>
+    <entry key="ReversalsQueue">IN.{{item.countrycode|upper}}.CPG.PAYMENTREVERSALS</entry>
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">/var/log/applications/{{item.countrycode}}/hub/paymentack/{{item.countrycode}}_paymentack_info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/{{item.countrycode}}/hub/paymentack/{{item.countrycode}}_paymentack_error.log</entry>
+    <entry key="DebugLogFile">/var/log/applications/{{item.countrycode}}/hub/paymentack/{{item.countrycode}}_paymentack_debug.log</entry>
+
+    <!--Environment the Application is Running In-->
+    <entry key="Env">test</entry>
+    <entry key="CountryCode">MW</entry>
+
+    <!--RabbitMQ tests-->
+    <entry key="RabbitMQHost">{{MQHOST}}</entry>
+    <entry key="RabbitMQPort">{{MQPORT}}</entry>
+    <entry key="RabbitMQUserName">{{item.applicationconf.mquser}}</entry>
+    <entry key="RabbitMQPassword">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    <!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry>
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_{{item.countrycode}}</entry>
+    <entry key="DBUsername">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DBPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DBMaxConnections">5</entry>
+
+    <!--List of Statuses the Trx Cannot be Acknowledged in-->
+    <entry key="ExcludedCurrentStatuses">140,141,216,217,219</entry>
+
+    <!--B2C IDs-->
+    <entry key="B2CIDs">140</entry>
+
+    <!--Application Users Whitelist-->
+    <entry key="ApplicationUsersWhitelist">12</entry>
+
+    <!--Message Send Configs-->
+    <entry key="MaxNoOfSends">5</entry>
+    <entry key="TimeToNextSend">5000</entry>
+
+    <!--Status Codes-->
+    <entry key="PaymentAccepted">140</entry>
+    <entry key="PaymentRejected">141</entry>
+    <entry key="PendingReversal">179</entry>
+    <entry key="TransactionEscalated">219</entry>
+    <entry key="StatusUnknown">103</entry>
+    <entry key="PaymentMarkedForReprocessing">401</entry>
+    <entry key="PaymentPending">139</entry>
+
+    <!--Maximum no. of Times to Retry-->
+    <entry key="MaxNotificationsRetries">5</entry>
+
+    <!--Mula-->
+    <entry key="MulaImplicitAttribute">66</entry>
+
+    <!---->
+    <entry key="AppNotificationPaymentOrigin">1,2</entry>
+
+    <!---->
+    <entry key="ActionClientAcknowledged">4</entry>
+
+    <!--Bulk SMS-->
+    <entry key="CreditConsumptionServices">0</entry>
+    <entry key="BulkSMSCreditFunction">getCreditBalance</entry>
+    <entry key="BulkSMSUsername">username</entry>
+    <entry key="BulkSMSPassword">password</entry>
+    <entry key="BulkSMSURL">http://localhost/stubs/bulksms.php</entry>
+
+    <!--Errors API-->
+    <entry key="ErrorsAPIURL">{{REPORTING_SERVICE_API}}</entry>
+    <entry key="ErrorsAPIRetries">5</entry>
+
+    <!--Timeouts in Milliseconds-->
+    <entry key="ConnectionTimeout">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="SocketTimeout">{{CONNECTION_TIMEOUT}}</entry>
+
+    <!---->
+    <entry key="ReceiptURL">http://localhost:8000</entry>
+
+    <!---->
+    <entry key="AirtimeReceiverMessageServices">1</entry>
+
+    <!---->
+    <entry key="TransactionType">credit</entry>
+    <entry key="TransactionSource">payment</entry>
+
+    <!---->
+    <entry key="StatusPushedDescription">Started the payment pushing status</entry>
+    <entry key="StatusPushedProcessing">2</entry>
+    <entry key="StatusPushedProcessed">1</entry>
+
+    <!---->
+    <entry key="SuccessfulPayment">140</entry>
+    <entry key="SuccessfulPaymentDesc">Successful Payment</entry>
+    <entry key="FailedPayment">141</entry>
+    <entry key="FailedPaymentDesc">Failed Payment</entry>
+
+    <!--Refunds Mode-->
+    <entry key="MOMORefund">momo</entry>
+    <entry key="BankRefund">bank</entry>
+    <entry key="CardRefund">card</entry>
+
+    <!--Payer Client IDs of Card Payer Clients-->
+    <entry key="CardPaymentModePayerClientIDs">0</entry>
+
+    <!--Refunds API Credentials-->
+    <entry key="RefundsAPIUsername">{{RefundsAPIUsername}}</entry>
+    <entry key="RefundsAPIPassword">{{RefundsAPIPassword}}</entry>
+    <entry key="ReversalsAPIUsername">{{RefundsAPIUsername}}</entry>
+    <entry key="ReversalsAPIPassword">{{RefundsAPIPassword}}</entry>
+    <entry key="PartialRefundsAPIURL">http://{{CLIENTAPPSLOADBALANCER}}:{{item.countryport}}/hub/services/producers/coreAPI/Reversals/public/autoreverse</entry>
+    <entry key="FullRefundsAPIURL">http://CLIENTAPPSLOADBALANCER{{CLIENTAPPSLOADBALANCER}}:{{item.countryport}}/hub/services/producers/coreAPI/Reversals/public/RefundsAndReversalsAPI/refund</entry>
+
+    <!---->
+    <entry key="RefundsMessage">Refund Initiated By Acknowledgment Consumer</entry>
+
+    <!--Message for when the queue amount is not equal to DB amount-->
+    <entry key="AmountNotEqualMessage">The amount in the system does not match the amount sent. Merchant Payment will be escalated</entry>
+
+    <!--The UserID of the Application (PaymentACK)-->
+    <entry key="ApplicationUserID">12</entry>
+
+</properties>

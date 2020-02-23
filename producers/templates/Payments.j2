@@ -1,0 +1,374 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hobbit
+ * Date: 10/25/18
+ * Time: 1:27 PM
+ */
+
+namespace App\Configs;
+
+
+class Configs
+{
+    /**
+     * Log path
+     */
+  //  const LOG = '/var/log/applications/ke/core/api/';
+    const LOG = '/var/log/applications/{{item.countrycode}}/hub/payments/';
+    /**
+     * CONNECTION TO RABBITMQ locally
+     */
+
+
+    const QUEUE_HOST = '{{MQHOST}}';
+    const QUEUE_PORT = '{{MQPORT}}';
+    const QUEUE_USERNAME = '{{item.applicationconf.mquser}}';
+    const QUEUE_PASSWORD = '{{item.applicationconf.mqpassword}}';
+
+    /**
+     * Queue Name
+     */
+    const POST_PAYMENT_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.CPG.POSTPAYMENT';
+
+    const ACK_PAYMENT_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.CPG.PAYMENTACK';
+
+    const AUTO_REVERSALS = 'IN.{{item.countrycode|upper}}.CPG.AUTOREVERSALS';
+
+
+    /**
+     * Queue Name
+     */
+    const MESSAGING_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.CPG.MESSAGING';
+
+    /**
+     * Exchange name
+     */
+    const EXCHANGE_NAME = 'IN.{{item.countrycode|upper}}.CPG.EXCHANGE';
+
+    /**
+     * Exchange type
+     */
+    const EXCHANGE_TYPE = 'direct';
+
+    /**
+     * Queue durability
+     */
+    const QUEUE_DURABILITY = 2;
+
+    /**
+     * Debug log switch
+     */
+    const DEBUG_LOG_ON = 1;
+
+    const PASSWORD_STATUS_ID = 1;
+
+    const CAN_ACCESS_UI = 0;
+
+    const ACTIVE = 1;
+
+    const RESTRICT_TO_API_USERS = true;
+
+    const CLIENTID = 1;
+
+    const CLIENT_REDIS_HASH = '{{item.countrycode|upper}}.CLIENT';
+
+    const USER_REDIS_HASH = '{{item.countrycode|upper}}.USER';
+
+    const FAILED_TO_PUBLISH_TO_QUEUE_FILE_MESSAGING = '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG_MESSAGING.txt';
+
+    const FAILED_TO_PUBLISH_TO_QUEUE_FILE = '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG_POSTPAYMENT.txt';
+
+    const FAILED_TO_PUBLISH_TO_ACK_PAYMENT_QUEUE_NAME_FILE =  '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG_PAYMENTACK.txt';
+
+    const FAILED_TO_PUBLISH_TO_AUTOREVERSALS_QUEUE_NAME_FILE =  '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG_AUTOREVERSALS.txt';
+
+    const MYSQL_DUPLICATE = 1062;
+
+    const MYSQL_DUPLICATE1 = 23000;
+
+    const USER_ACTIVE = 1;
+
+    const CLIENT_ACTIVE = 1;
+
+    const MIN_DATE_CHECK_POST_PAYMENT = "-1 year";
+
+    const DATE_FORMAT = "Y-m-d";
+
+    const DEFAULT_RECEIPT_LANGUAGE = "en";
+
+    const DEFAULT_PAYMENT_ORIGIN = "OTHERS";
+
+    const DEFAULT_PAYMENT_ORIGIN_ID = 5;
+
+    const DEFAULT_LANGUAGE_CODE = "en";
+
+    const DEFAULT_TIMEZONE = 'UTC';
+
+    const PAYMENT_MODE = 'MOBILE';
+
+    const API_ERRORS_URL = '{{item.countryzone}}';
+
+    const SERVER_NAME = 'ca1-sd.mau.cellulant.com';
+
+    const DEFAULT_COUNTRY = '{{item.countrycode|upper}}';
+
+    const API_ERRORS_ON = 1;
+
+    /**
+     * Connection time out.
+     */
+    const CONNECTION_TIMEOUT = 5000;
+
+    const APPLICATION_NAME = 'Payment_API';
+
+    const POST_PAYMENT_MAXIMUM_LIMIT = 500;
+    const DEFAULT_SERVICE_QUEUE = 'IN.{{item.countrycode|upper}}.CPG.PAYMENTPUSHER';
+    const DEFAULT_COUNTRY_TIMEZONE = '{{REPORTING_SERVICE_API}}';
+
+
+    /**
+     * Merchant tier mappings.
+     * This maps the merchant tier code to the merchant tier ID
+     */
+    public static $MERCHANT_TIERS = array(
+        "A" => 1,
+        "B" => 2,
+        "C" => 3,
+    );
+
+    const INACTIVE_STATE = 3;
+
+    /**
+     * Mula APP failed payment message
+     */
+    static $APP_NOTIFICATION_PAYMENT_ORIGIN = array(
+        1,
+        2);
+
+    static $ACK_ACKNOWLEDGEMENT_CODE_CHECK = array(140,141,216,217,219,103,401);
+    /**
+     * Mula APP failed payment message
+     */
+    const IMPLICIT_ATTRIBUTE_FOR_MULA_APP = 66;
+
+    const IS_REMINDER = 2;
+
+    const IS_APP_NOTIFICATION = 1;
+
+    const MAX_NOTIFICATION_RETRIES = 5;
+
+    /**
+     * Mula APP failed payment message
+     */
+    const MULA_FAILED_PAYMENT = "Failed (Not Charged)";
+
+    const FETCH_PAYMENTS_MAXIMUM_LIMIT = 500;
+
+    const FETCH_PAYMENTS_DEFAULT_LIMIT = 50;
+
+    const MAX_BATCH_COUNT = 500;
+
+    /**
+     * Limit for database unique fetch.
+     *
+     * @var int
+     */
+    const FETCH_UNIQUE_RESULT = 1;
+
+    /**
+     * Internal application users that can post on behalf of external clients.
+     *
+     * The format of the string is a comma separated values where the values are
+     * userIDs of the application that should be in the DB. EG. "3,3,4"
+     *
+     * @var string
+     */
+    const APPLICATION_USERS_WHITELIST = "70,233,122,1053,1163,1,1215";
+
+    const HOLD_PAYMENT_ACTION_ID = 5;
+
+    /**
+     *  @var string
+     * Comma separated values for services that require MNP Lookup verification
+     * before terminating the request to the MNOs
+     *
+     */
+    const SERVICES_CONFIGURED_FOR_MNP_LOOKUP = "309,360";
+
+    /**
+     * @var associative array
+     * For each serviceID configured for MNP LOOKUP above (SERVICES_CONFIGURED_FOR_MNP_LOOKUP)
+     * then there should be the serviceID it may map to based on the networkID
+     * and the payer client ID otherwise request will be processed
+     * with the serviceID sent with
+     */
+    public Static $MNP_SERVICE_MAPPINGS = array(
+        191 => array(
+            // Payer Client Diamond Bank of Africa
+            68 => array(
+                //64002=>9,//Tigo Airtime Topup
+                64003 => 276, //ZAntel Airtime Topup
+                64004 => 309, //Vodacom Airtime Topup
+                64005 => 360, //Zain Airtime Topup
+                63902 => 90
+            ),
+            // Payer client Safaricom Mpesa
+            181 => array(
+                //64002=>9,//Tigo Airtime Topup
+                64003 => 276, //ZAntel Airtime Topup
+                64004 => 309, //Vodacom Airtime Topup
+                64005 => 360, //Zain Airtime Topup
+                63902 => 90
+            )
+        ),
+        360 => array(
+            // Payer Client Diamond Bank of Africa
+            68 => array(
+                //64002=>9,//Tigo Airtime Topup
+                64003 => 276, //ZAntel Airtime Topup
+                64004 => 309, //Vodacom Airtime Topup
+                64005 => 360 //Zain Airtime Topup
+            ),
+            // Payer client Safaricom Mpesa
+            181 => array(
+                //64002=>9,//Tigo Airtime Topup
+                64003 => 276, //ZAntel Airtime Topup
+                64004 => 309, //Vodacom Airtime Topup
+                64005 => 360 //Zain Airtime Topup
+            ),
+            //Test
+            7 => array(
+                63902=>86,//Tigo Airtime Topup
+                64003 => 276, //ZAntel Airtime Topup
+                64004 => 309, //Vodacom Airtime Topup
+                64005 => 360 //Zain Airtime Topup
+            )
+
+        ),
+    );
+
+    /**
+     * @var Integer
+     * Represents, in days, a profile's network can be termed as valid
+     * since the last dateModified date in profiles table
+     *
+     */
+    const MNP_PROFILE_NETWORK_VALIDITY_PERIOD = 5;
+
+    /**
+     * The local URL pointing to the local MNPLookAPI, that communicates to the
+     * thirdparty MNPLookUP API
+     *
+     * @var string
+     *
+     */
+    const MNP_LOOKUP_API_URL = "http://3.122.24.11:9000/MNPMOCK/Mock.php";
+    //"http://localhost/MNPMOCK/Mock.php";
+    //"http://3.122.24.11:9000/MNPMOCK/Mock.php";
+
+
+    /**
+     * Payer Clients who are running a promotion
+     *
+     * PROMOTION_PAYER_SERVICE_AMOUNTS = array(
+     *         ClientID_1 => array(
+     *             ServiceID_1 => array(
+     *                 "valueType" => "percentage",
+     *                 "value" => 10
+     *             ),
+     *             ServiceID_2 => array(
+     *                 "valueType" => "fixed", (defaults to percentage if not properly written)
+     *                 "value" => 50
+     *             )
+     *         )
+     *     );
+     *
+     * @var array Array containing all payer clients running the promotion
+     */
+    public static $PROMOTION_PAYER_SERVICE_AMOUNTS = array(
+        5 => array(
+            2 => array(
+                "valueType" => "percentage",
+                "value" => 10
+            ),
+            1 => array(
+                "valueType" => "fixed",
+                "value" => 10
+            ),
+            3 => array(
+                "valueType" => "fixed",
+                "value" => 0
+            ),
+
+            4 => array(
+                "valueType" => "fixed",
+                "value" => 100
+            ),
+        ),
+    );
+
+    const B2C_ID = '12,13';
+
+    /**
+     * Payment with presentment service constant.
+     *
+     * @var int
+     */
+    const PAYMENT_WITH_PRESENTMENT_SERVICE = 1;
+
+    /**
+     * Payment without presentment service constant.
+     *
+     * @var int
+     */
+    const PAYMENT_WITHOUT_PRESENTMENT_SERVICE = 2;
+
+    /**
+
+     * Payment with or without presentment service constant.
+     *
+     * @var int
+     */
+    const PAYMENT_WITH_OR_WITHOUT_PRESENTMENT_SERVICE = 3;
+
+    /**
+     * Buy goods with or without presentment service constant.
+     *
+     * @var int
+     */
+    const BUY_GOODS_WITH_OR_WITHOUT_PRESENTMENT_SERVICE = 4;
+
+    /**
+     * Reversal API
+     */
+    const REVERSAL_API = 'http://localhost:{{item.countryport}}/{{BASE_REVERSALS_URL}}';
+
+    const ISSUE_RESOLUTION = 'ISSUE_RES';
+
+    const MNO_CLIENT_IDS = array(1,2);
+
+    const IS_PREPAID_SERVICE = 1;
+
+    const CAN_CONSUME_FLOAT = 1;
+
+    const PAYMENTS_DEFAULT_CURRENCY = '{{item.countrycode|upper}}K';
+
+    const PAYMENTS_ACCOUNT_NUMBER = 'DEFAULT';
+
+    const PAYMENTS_NARRATION = 'This is a default narration';
+
+    const PAYMENTS_SERVICE_ID = 1;
+
+    const PAYMENTS_DEFAULT_VALUE = 0;
+
+    const PAYMENTS_DEFAULT_MSISDN = '254704069085';
+
+    const AUTO_ACK_VALUE = 0;
+
+    const CURRENCY_HASH = '{{item.countrycode|upper}}.CURRENCY';
+
+    const REQUEST_ORIGIN = '{{item.countrycode|upper}}.REQUESTORIGINS';
+
+    const NETWORKS = '{{item.countrycode|upper}}.NETWORKS';
+}

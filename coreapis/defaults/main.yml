@@ -1,0 +1,496 @@
+---
+# defaults file for coreapis
+
+gitRepo: git.prod.mizizi.com/cpg/payments/apis/
+githubuser: "testuser"
+githubpassword: "1234"
+
+country:
+    - path: tz
+    - path: cm
+    - path: cf  
+    - path: td
+    - path: cg
+    - path: gq
+    - path: ga
+    - path: st
+    - path: bi
+    - path: ss
+    - path: ng
+    - path: cd
+    - path: bj
+    - path: bf
+    - path: cv
+    - path: ci
+    - path: gw
+    - path: ml
+    - path: ne
+    - path: sn
+    - path: tg
+    - path: gc
+    - path: lr
+    - path: sl
+
+content:
+    - name: beepjsonapi
+    - name: beepsoapapi
+    - name: beepxmlapi 
+log:
+    - kind: info
+    - kind: error
+    - kind: debug
+    - kind: fatal
+
+
+    #Database configs
+DBHOST: "ma-db.cyo4n0yy0isg.eu-west-1.rds.amazonaws.com"
+DBPORT: 3306
+MYSQL_MAX_CONNECTIONS: 100
+
+#RabbitMQ configs
+MQHOST: "pmq-lb-rabbit-84922e324c27255a.elb.eu-west-1.amazonaws.com"
+MQPORT: 5672
+
+
+#Redis configs
+REDISHOST: '10.101.11.51'
+REDISPORT: 6379
+REDISPASSWORD: 'uG3ajW5GqPxIYRsv'
+
+#Timeout configs
+CONNECTION_TIMEOUT: 15000
+READ_TIMEOUT: 15000
+sleeptime : 200
+replyTimeout :
+
+#Application configs
+NUMBER_OF_THREADS: 5
+beepJsonApiUrl:
+
+#DCIPs
+
+SACA: ca1-ke.dc1.mizizi.com
+SBCA: ca1-sb.dc1.mizizi.com
+SCCA: ca1-sc.dc1.mizizi.com
+SECA: ca1-se.dc1.mizizi.com
+SDCA: ca1-sd.dc1.mizizi.com
+
+#Loadbalancers configs
+CLIENTAPPSLOADBALANCER: internal-cpg-core-lb-62008288.eu-west-1.elb.amazonaws.com
+MNOAPPSLOADBALANCER:
+
+#server IPs congigs
+CLIENTAPPSIP: 10.101.11.221
+MNOAPPSIP: 10.101.11.103
+CLIENTJDAPPSIP: 10.101.11.89
+MNOAPPSJDIP: 10.101.13.204
+
+REPORTINGMICROSIP : '127.0.0.1'
+REPORTING_SERVICE_API: "http://{{REPORTINGMICROSIP}}/api/reporting/v1/"
+
+BASEFETCHINVOICES_URL: '/hub/services/producers/coreAPI/Fetch_Invoices/public/'
+BASE_PAYMENTS_URL : '/hub/services/producers/coreAPI/Payments/public/'
+BASE_PROFILING_URL: '/hub/services/producers/coreAPI/Profiling/public/'
+BASE_INVOICES_URL : '/hub/services/producers/coreAPI/Invoices/public/'
+BASE_REVERSALS_URL : '/hub/services/producers/coreAPI/Reversals/public/'
+BASE_FETCH_PAYMENTS_URL : '/hub/services/producers/coreAPI/Fetch_Payments/public/'
+BASE_SERVICES_URL: '/hub/services/producers/coreAPI/Services/public/'
+BASE_LIBRARY_URL : '/hub/services/producers/coreAPI/Library/public/'
+basebeepurl : 'hub/services/paymentGateway/JSON/'
+
+#Environment configs
+APPLICATION_ENV: 'PROD'
+REVERSALs_WRAPPER_API:
+
+#Logs configs
+LOGSLOCATION: '/var/log/applications'
+appconfiglocation : '/srv'
+
+consumersLocation : '/apps'
+consumershubLocation : '/hub/consumers'
+
+APPLICATIONCONFIGS:
+  #Tanzania
+  - name : JSON
+    countrycode: tz
+    countryport: 9010
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: tz
+    countryport: 9010
+    countryzone: ""
+    countryprefix : 255
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Cameroon
+  - name : JSON
+    countrycode: cm
+    countryport: 9012
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: cm
+    countryport: 9012
+    countryzone: ""
+    countryprefix : 237
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Central Africa
+  - name : JSON
+    countrycode: cf
+    countryport: 9013
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: cf
+    countryport: 9013
+    countryzone: ""
+    countryprefix : 236
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Chad
+  - name : JSON
+    countrycode: td
+    countryport: 9014
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: td
+    countryport: 9014
+    countryzone: ""
+    countryprefix : 235
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Congo Brazzaville
+  - name : JSON
+    countrycode: cg
+    countryport: 9015
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: cg
+    countryport: 9015
+    countryzone: ""
+    countryprefix : 242
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Equatorial Guinea
+  - name : JSON
+    countrycode: gq
+    countryport: 9016
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: gq
+    countryport: 9016
+    countryzone: ""
+    countryprefix : 240
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Gabon
+  - name : JSON
+    countrycode: ga
+    countryport: 9017
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: ga
+    countryport: 9017
+    countryzone: ""
+    countryprefix : 241
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Sao Tome
+  - name : JSON
+    countrycode: st
+    countryport: 9018
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: st
+    countryport: 9018
+    countryzone: ""
+    countryprefix : 239
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Burundi
+  - name : JSON
+    countrycode: bi
+    countryport: 9019
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: bi
+    countryport: 9019
+    countryzone: ""
+    countryprefix : 257
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #South Sudan
+  - name : JSON
+    countrycode: ss
+    countryport: 9020
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: ss
+    countryport: 9020
+    countryzone: ""
+    countryprefix : 211
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Nigeria
+  - name : JSON
+    countrycode: ng
+    countryport: 9021
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: ng
+    countryport: 9021
+    countryzone: ""
+    countryprefix : 234
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Congo DRC
+  - name : JSON
+    countrycode: cd
+    countryport: 9022
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: cd
+    countryport: 9022
+    countryzone: ""
+    countryprefix : 243
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Benin
+  - name : JSON
+    countrycode: bj
+    countryport: 9023
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: bj
+    countryport: 9023
+    countryzone: ""
+    countryprefix : 229
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Burkina Faso
+  - name : JSON
+    countrycode: bf
+    countryport: 9024
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: bf
+    countryport: 9024
+    countryzone: ""
+    countryprefix : 226
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Cape Verde
+  - name : JSON
+    countrycode: cv
+    countryport: 9025
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: cv
+    countryport: 9025
+    countryzone: ""
+    countryprefix : 238
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Cote DIvoire
+  - name : JSON
+    countrycode: cv
+    countryport: 9026
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: cv
+    countryport: 9026
+    countryzone: ""
+    countryprefix : 225
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Guinea-Bissau
+  - name : JSON
+    countrycode: gw
+    countryport: 9027
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: gw
+    countryport: 9027
+    countryzone: ""
+    countryprefix : 245
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Mali
+  - name : JSON
+    countrycode: ml
+    countryport: 9028
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: ml
+    countryport: 9028
+    countryzone: ""
+    countryprefix : 223
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Niger
+  - name : JSON
+    countrycode: ne
+    countryport: 9029
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: ne
+    countryport: 9029
+    countryzone: ""
+    countryprefix : 227
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Senegal
+  - name : JSON
+    countrycode: sn
+    countryport: 9030
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: sn
+    countryport: 9030
+    countryzone: ""
+    countryprefix : 221
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Togo
+  - name : JSON
+    countrycode: tg
+    countryport: 9031
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: tg
+    countryport: 9031
+    countryzone: ""
+    countryprefix : 221
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Guinea Conakry
+  - name : JSON
+    countrycode: gc
+    countryport: 9033
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: gc
+    countryport: 9033
+    countryzone: ""
+    countryprefix : 224
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Liberia
+  - name : JSON
+    countrycode: lr
+    countryport: 9034
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: lr
+    countryport: 9034
+    countryzone: ""
+    countryprefix : 231
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"
+  #Sierra Leone
+  - name : JSON
+    countrycode: sl
+    countryport: 9035
+    countryzone: ""
+    applicationconf:
+      tempsrc : "json.j2"
+      tempdest : "Config.php"
+  - name : XML
+    countrycode: sl
+    countryport: 9035
+    countryzone: ""
+    countryprefix : 232
+    applicationconf:
+      tempsrc : "xml.j2"
+      tempdest : "Config.php"

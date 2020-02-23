@@ -1,0 +1,176 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hobbit
+ * Date: 10/25/18
+ * Time: 1:27 PM
+ */
+
+namespace App\Configs;
+
+
+class Configs
+{
+    /**
+     * Log path
+     */
+  //  const LOG = '/var/log/applications/ke/core/api/';
+    const LOG = '/var/log/applications/{{item.countrycode}}/hub/profiling/';
+    /**
+     * CONNECTION TO RABBITMQ locally
+     */
+    const QUEUE_HOST = '{{MQHOST}}';
+    const QUEUE_PORT = '{{MQPORT}}';
+    const QUEUE_USERNAME = '{{item.applicationconf.mquser}}';
+    const QUEUE_PASSWORD = '{{item.applicationconf.mqpassword}}';
+
+        /**
+     * Queue Name
+     */
+    const POST_PAYMENY_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.POST_PAYMENT';
+
+    const ACK_PAYMENT_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.PAYMENTSACK';
+
+    /**
+     * Exchange name
+     */
+    const EXCHANGE_NAME = 'IN.{{item.countrycode|upper}}.CPG.EXCHANGE';
+
+    /**
+     * Exchange type
+     */
+    const EXCHANGE_TYPE = 'direct';
+
+    /**
+     * Queue durability
+     */
+    const QUEUE_DURABILITY = 2;
+
+    /**
+     * Debug log switch
+     */
+    const DEBUG_LOG_ON = 1;
+
+    const PASSWORD_STATUS_ID = 1;
+
+    const CAN_ACCESS_UI = 0;
+
+    const ACTIVE = 1;
+
+    const RESTRICT_TO_API_USERS = true;
+
+    const CLIENTID = 1;
+
+    const CLIENT_REDIS_HASH = '{{item.countrycode|upper}}.CLIENT';
+
+    const USER_REDIS_HASH = '{{item.countrycode|upper}}.USER';
+
+    const FAILED_TO_PUBLISH_TO_QUEUE_FILE = '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/failed_publish_records.txt';
+
+    const FAILED_TO_PUBLISH_TO_ACK_PAYMENT_QUEUE_NAME_FILE =  '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/failed_publish_ack_queue.txt';
+
+    const MYSQL_DUPLICATE = 1062;
+
+    const MYSQL_DUPLICATE1 = 23000;
+
+    const USER_ACTIVE = 1;
+
+    const CLIENT_ACTIVE = 1;
+
+    const MIN_DATE_CHECK_POST_PAYMENT = "-1 year";
+
+    const DATE_FORMAT = "Y-m-d";
+
+    const DEFAULT_RECEIPT_LANGUAGE = "en";
+
+    const DEFAULT_PAYMENT_ORIGIN = "OTHERS";
+
+    const DEFAULT_PAYMENT_ORIGIN_ID = 5;
+
+    const DEFAULT_LANGUAGE_CODE = "en";
+
+    const DEFAULT_TIMEZONE = '{{item.countryzone}}';
+
+    const PAYMENT_MODE = 'MOBILE';
+
+    const API_ERRORS_URL = '{{REPORTING_SERVICE_API}}';
+
+    const SERVER_NAME = 'ca1-sd.mau.cellulant.com';
+
+    const DEFAULT_COUNTRY = '{{item.countrycode|upper}}';
+
+    const API_ERRORS_ON = 1;
+
+    /**
+     * Connection time out.
+     */
+    const CONNECTION_TIMEOUT = 5000;
+
+    const APPLICATION_NAME = 'Profiling_API';
+
+    const POST_PAYMENT_MAXIMUM_LIMIT = 500;
+
+    /**
+     * Merchant tier mappings.
+     * This maps the merchant tier code to the merchant tier ID
+     */
+    public static $MERCHANT_TIERS = array(
+        "A" => 1,
+        "B" => 2,
+        "C" => 3,
+    );
+
+    const INACTIVE_STATE = 3;
+
+    /**
+     * Mula APP failed payment message
+     */
+    static $APP_NOTIFICATION_PAYMENT_ORIGIN = array(
+        1,
+        2);
+
+    /**
+     * Mula APP failed payment message
+     */
+    const IMPLICIT_ATTRIBUTE_FOR_MULA_APP = 66;
+
+    const IS_REMINDER = 2;
+
+    const IS_APP_NOTIFICATION = 1;
+
+    const MAX_NOTIFICATION_RETRIES = 5;
+
+    /**
+     * Mula APP failed payment message
+     */
+    const MULA_FAILED_PAYMENT = "Failed (Not Charged)";
+
+    const FETCH_PAYMENTS_MAXIMUM_LIMIT = 500;
+
+    const FETCH_PAYMENTS_DEFAULT_LIMIT = 50;
+
+    const MAX_BATCH_COUNT = 500;
+
+    /**
+     * Limit for database unique fetch.
+     *
+     * @var int
+     */
+    const FETCH_UNIQUE_RESULT = 1;
+
+    /**
+     * URL to the validation wrappers.
+     *
+     * @var string
+     */
+    const VALIDATION_WRAPPERS_URL = "http://localhost/ValidationWrappers/";
+
+    /**
+     * URL to the validation wrappers.
+     *
+     * @var string
+     */
+    const QUERY_BILL_WRAPPERS_URL = "http://localhost/queryBillWrappers/";
+
+
+}

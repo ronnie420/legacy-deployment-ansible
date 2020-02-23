@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Application settings -->
+    <entry key="NUM_OF_CHILDREN_THREADS">5</entry>
+    <entry key="APPLICATION_NAME">Post Payment Consumer</entry>
+
+    <!--MQ settings -->
+    <entry key="MQ_PREFETCH_COUNT">1</entry>
+    <entry key="MQ_HOST">{{MQHOST}}</entry>
+    <entry key="MQ_USERNAME">{{item.applicationconf.mquser}}</entry>
+    <entry key="MQ_PASSWORD">{{item.applicationconf.mqpasword}}</entry>
+    <entry key="MQ_PORT">{{MQPORT}}</entry>
+    <entry key="MQ_EXCHANGE">IN.{{item.countrycode|upper}}.CPG.EXCHANGE</entry>
+    <entry key="MQ_QUEUE_NAME">IN.{{item.countrycode|upper}}.CPG.POSTPAYMENT</entry>
+    <entry key="MQ_RETRIES_QUEUE">IN.{{item.countrycode|upper}}.CPG.POSTPAYMENT.RETRIES</entry>
+    <entry key="MQ_MESSAGING_QUEUE">IN.{{item.countrycode|upper}}.CPG.MESSAGING</entry>
+    <entry key="MQ_B2C_QUEUE">IN.{{item.countrycode|upper}}.CPG.B2C.RETRIES</entry>
+    <entry key="MQ_PAYMENT_PUSHER_QUEUE">IN.{{item.countrycode|upper}}.CPG.PAYMENTPUSHER</entry>
+    <entry key="MQ_DELAYED_PAYMENTS_QUEUE">IN.{{item.countrycode|upper}}.CPG.DELAYEDPAYMENTS</entry>
+
+    <!--comment>Logging related settings.</comment -->
+    <entry key="INFO_LOG_LEVEL">DEBUG</entry>
+    <entry key="ERROR_LOG_LEVEL">ERROR</entry>
+    <entry key="INFO_LOG_FILE">/var/log/applications/{{item.countrycode}}/hub/postpaymentconsumer/{{item.countrycode}}_postpaymentconsumer_info.log</entry>
+    <entry key="ERROR_LOG_FILE">/var/log/applications/{{item.countrycode}}/hub/postpaymentconsumer/{{item.countrycode}}_postpaymentconsumer_error.log</entry>
+
+    <!-- File settings -->
+    <entry key="FAILED_TO_PUBLISH_DIRECTORY">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/</entry>
+    <entry key="INVALID_MESSAGES_FILE">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/invalidMessages.txt</entry>
+    <entry key="FAILED_QUERRIES_FILE">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/failedQuerries.txt</entry>
+    <entry key="FAILED_REVERSALS_FILE">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/failedReversals.txt</entry>
+    <!--comment>Daemon operation settings.</comment -->
+    <entry key="SLEEP_NUMBER_OF_SENDS">10000</entry>
+    <entry key="CONNECTION_TIMEOUT">5000</entry>
+    <entry key="SOCKET_TIMEOUT">5000</entry>
+    <entry key="HTTP_SUCCESS">200</entry>
+    <entry key="COUNTRY_CODE">{{item.countrycode|upper}}</entry>
+    <entry key="MAX_NUMBER_OF_SENDS">5</entry>
+
+    <!--comment>Redi instacerelated settings.</comment -->
+    <entry key="REDISKEYBASE">{{item.countrycode|upper}}</entry>
+    <entry key="REDISHOST">{{REDISHOST}}</entry>
+    <entry key="REDISPORT">{{REDISPORT}}</entry>
+    <entry key="REDISPASSWORD">{{REDISPASSWORD}}</entry>
+    <entry key="MERCHANT_TIERS_PREFIX">MERCHANT_TIERS</entry>
+    <entry key="LANGUAGES_PREFIX">LANGUAGES</entry>
+    <entry key="REQUESTORIGINS_PREFIX">REQUESTORIGINS</entry>
+    <entry key="REDIS_MAX_CONNECTIONS">20</entry>
+    <entry key="REDIS_MAX_IDLE">20</entry>
+    <entry key="REDIS_MIN_IDLE">10</entry>
+    <!--should preferably be the same as soTimeout -->
+    <entry key="REDIS_MAX_WAIT_IN_MILLI">10000</entry>
+    <entry key="REDIS_MIN_EVICTABLE_IDLE_TIME_MILLI">60000</entry>
+    <entry key="REDIS_BLOCK_WHEN_EXHAUSTED">true</entry>
+    <entry key="REDIS_TEST_ON_BORROW">false</entry>
+    <entry key="REDIS_DELAYED_PREFIX">DELAYED</entry>
+
+    <!--comment> MYSQL Database Settings.</comment -->
+    <entry key="MYSQL_HOST">{{DBHOST}}</entry>
+    <entry key="MYSQL_PORT">{{DBPORT}}</entry>
+    <entry key="MYSQL_USERNAME">{{item.applicationconf.dbuser}}</entry>
+    <entry key="MYSQL_PASSWORD">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="MYSQL_DATABASE">hub_{{item.countrycode}}</entry>
+    <entry key="MYSQL_MAX_CONNECTIONS">40</entry>
+    <entry key="MYSQL_MAX_RETRIES">5</entry>
+    <entry key="DB_POOL_NAME">5</entry>
+
+    <!-- Service configs -->
+    <entry key="WITH_PRESENTMENT">1</entry>
+    <entry key="WITHOUT_PRESENTMENT">2</entry>
+    <entry key="WITH_OR_WITHOUT_PRESENTMENT">3</entry>
+    <entry key="EXACT_PAYMENT">yes</entry>
+    <entry key="OVER_PAYMENT">overPayment</entry>
+    <entry key="UNDER_PAYMENT">no</entry>
+    <entry key="EXACT_PAYMENT_NO">no</entry>
+    <entry key="DbHost">db1-ke.dc1.cellulant.com</entry>
+    <entry key="DEFAULT_LANGUAGE_ID">1</entry>
+
+    <!-- Status codes -->
+    <entry key="PAYMENT_POSTED_SUCCESSFULLY">139</entry>
+    <entry key="PAYMENT_LOGGED_AS_FAILED">138</entry>
+    <entry key="HELD_PAYMENTS_STATUS_CODE">404</entry>
+    <entry key="POST_PAYMENT_PUBLISHED_SUCCESSFULLY">144</entry>
+    <entry key="PAYMENT_FAILED_POST_PAYMENT">133</entry>
+    <entry key="NEW_INVOICE">130</entry>
+    <entry key="INVOICE_PARTIALLY_PAID">252</entry>
+    <entry key="INVOICE_FULLY_PAID">253</entry>
+    <entry key="AUTHENTICATION_SUCCESS">131</entry>
+    <entry key="REVERSAL_PROCESS_INITIATED">450</entry>
+    <entry key="MISSING_PROCESSED_PAYMENT_STATUS_CODE">142</entry>
+    
+
+    <!-- Service patterns -->
+    <entry key="PAYMENT_WITH_PRESENTMENT">1</entry>
+    <entry key="PAYMENT_WITHOUT_PRESENTMENT">2</entry>
+    <entry key="PAYMENT_WITH_OR_WITHOUT_PRESENTMENT">3</entry>
+    <entry key="BUY_GOODS_WITH_OR_WITHOUT_PRESENTMENT">4</entry>
+
+    <!-- states -->
+    <entry key="ACTIVE_STATE">1</entry>
+    <entry key="CREATED_STATE">2</entry>
+    <entry key="INACTIVE_STATE">0</entry>
+
+
+    <!-- Merchant tier mappings as comma separated params format merchantTierCode#merchantTierID
+    eg A#1 -->
+    <entry key="MERCHANT_TIERS">A#1</entry>
+
+    <!-- other settings -->
+    <entry key="DEFAULT_LANGUAGE_CODE">en</entry>
+    <entry key="DEFAULT_LANGUAGE_ID">1</entry>
+    <!-- comma separated with NO SPACE -->
+    <entry key="IMPLICIT_ATTRIBUTE_FOR_MULA_APP">22,6</entry>
+    <entry key="APP_NOTIFICATION_PAYMENT_ORIGIN">1,2,6</entry>
+    <entry key="MULA_SUCCESS_PAYMENT">Delivery in progress</entry>
+    <entry key="MAX_NOTIFICATION_RETRIES">5</entry>
+    <entry key="IS_APP_NOTIFICATION">1</entry>
+
+    <entry key="AUTO_REVERSALS_API">http://{{CLIENTAPPSLOADBALANCER}}:{{item.countryport}}/hub/services/producers/coreAPI/reversals/public/autoreverse</entry>
+    <!-- reporting API configs -->
+    <entry key="REPORT_FAULTS">1</entry>
+    <entry key="REPORTING_SERVICE_API">{{REPORTING_SERVICE_API}}</entry>
+    <entry key="REPORTING_SERVICE_RETRIES">2</entry>
+
+    <!--ActionID for Presentment action as stored in the DB. -->
+    <entry key="HOLD_PAYMENT_ACTION_ID">5</entry>
+
+    <!-- Duplicate check -->
+    <entry key="DUPLICATE_CHECK_INTERVAL_IN_SECONDS">86400</entry>
+
+    <entry key="TIMEZONE">Africa/Blantyre</entry>
+    <entry key="CARD_PAYERCLIENTS">0</entry>
+    <entry key="BANK_PAYMENT_MODES">MOBILE,ATM,ONLINE</entry>
+</properties

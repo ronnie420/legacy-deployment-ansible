@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Files to Handle Failures in Publishing-->
+    <entry key="FailedExtractsFile">>/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_RECON_EXTRACTS.txt</entry>
+    <entry key="FailedRetriesFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_RECON_UPLOADS_RETRIES.txt</entry>
+
+    <!--Directory Where Recon Files are Uploaded to-->
+    <entry key="UploadsDirectory">/var/log/applications/{{item.countrycode}}/hub/recon</entry>
+
+    <!--Queues-->
+    <entry key="ExtractsQueue">IN.{{item.countrycode|upper}}.CPG.RECON.EXTRACTS</entry>
+    <entry key="RetriesQueue">IN.{{item.countrycode|upper}}.CPG.RECON.UPLOADS.RETRIES</entry>
+    <entry key="UploadsQueue">IN.{{item.countrycode|upper}}.CPG.RECON.UPLOADS</entry>
+    
+
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">/var/log/applications/{{item.countrycode}}/hub/reconextractor/{{item.countrycode}}_reconextractor_info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/{{item.countrycode}}/hub/reconextractor/{{item.countrycode}}_reconextractor_error.log</entry>
+    <entry key="DebugLogFile">/var/log/applications/{{item.countrycode}}/hub/reconextractor/{{item.countrycode}}_reconextractor_debug.log</entry>
+
+    <!--Environment the Application is Running in-->
+    <entry key="Env">{{APPLICATION_ENV}}</entry>
+    <entry key="CountryCode">{{item.countrycode|upper}}</entry>
+
+    <!--RabbitMQ tests-->
+    <entry key="RabbitMQHost">{{MQHOST}}</entry>
+    <entry key="RabbitMQPort">{{MQPORT}}</entry>
+    <entry key="RabbitMQUserName">{{item.applicationconf.mquser}}</entry>
+    <entry key="RabbitMQPassword">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    
+<!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry>
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_{{item.countrycode}}</entry>
+    <entry key="DBUsername">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DBPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DBMaxConnections">5</entry>
+
+    <!--Statuses-->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnProcessedStatus">2</entry>
+    <entry key="FailedStatus">3</entry>
+
+    <!--The Maximum Number of Records we Can Insert in Batch-->
+    <entry key="MaximumBatchInsertSize">50</entry>
+
+    <!--The Time Between Retries-->
+    <entry key="NextTryInterval">20</entry>
+
+    <!--Custom Messages to be Used in Update-->
+    <entry key="ExceededRetriesDescription">Reconciliation exceeded max retries. Removing it from the queue</entry>
+
+    <!--Message Send Configs-->
+    <entry key="MaxNoOfSends">5</entry>
+    <entry key="TimeToNextSend">5000</entry>
+
+</properties>

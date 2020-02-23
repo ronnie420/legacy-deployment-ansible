@@ -1,0 +1,208 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: hobbit
+ * Date: 10/25/18
+ * Time: 1:27 PM
+ */
+
+namespace App\Configs;
+
+define("REFUNDS_REQUEST_SUCCESS" , "PENDING");
+
+
+class Configs
+{
+
+
+
+    /**
+     * Log path
+     */
+//     const LOG = '/mnt/local/log/ke/hub5/api/reversal/';
+    const LOG = '/var/log/applications/{{item.countrycode}}/hub/reversals/';
+    /**
+     * CONNECTION TO RABBITMQ locally
+     */
+    const QUEUE_HOST = '{{MQHOST}}';
+    const QUEUE_PORT = '{{MQPORT}}';
+    const QUEUE_USERNAME = '{{item.applicationconf.mquser}}';
+    const QUEUE_PASSWORD = '{{item.applicationconf.mqpassword}}';
+    
+    const QUEUE_EXCHANGE="IN.{{item.countrycode|upper}}.CPG.EXCHANGE";
+    const QUEUE_EXCHANGE_TYPE="direct";
+    /**
+     * Queue Name
+     */
+    const MESSAGING_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.CPG.MESSAGING';
+    
+    const AUTOREVERSAL_QUEUE_NAME = 'IN.{{item.countrycode|upper}}.CPG.AUTOREVERSALS';
+
+    /**
+     * Exchange name
+     */
+	const EXCHANGE_NAME = 'IN.{{item.countrycode|upper}}.CPG.EXCHANGE';
+    /**
+     * Exchange type
+     */
+    const EXCHANGE_TYPE = 'direct';
+
+    /**
+     * Queue durability
+     */
+    const QUEUE_DURABILITY = 2;
+
+    /**
+     * Debug log switch
+     */
+    const DEBUG_LOG_ON = 1;
+
+    const PASSWORD_STATUS_ID = 1;
+
+    const CAN_ACCESS_UI = 0;
+
+    const ACTIVE = 1;
+
+    const RESTRICT_TO_API_USERS = true;
+
+    const CLIENTID = 1;
+
+    const CLIENT_REDIS_HASH = '{{item.countrycode|upper}}.CLIENT';
+
+    const USER_REDIS_HASH = '{{item.countrycode|upper}}.USER';
+
+    const FAILED_TO_PUBLISH_TO_QUEUE_FILE = '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG_MESSAGING.txt';
+
+    const FAILED_TO_PUBLISH_TO_AUTOREVERSAL_QUEUE_FILE = '/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG_AUTOREVERSAL.txt';
+
+   // const FAILED_TO_PUBLISH_TO_ACK_PAYMENT_QUEUE_NAME_FILE =  '/var/www/html/coreServices2/apps/producers/CoreAPI/Payments/failed_publish_ack_queue.txt';
+
+    const MYSQL_DUPLICATE = 1062;
+
+    const MYSQL_DUPLICATE1 = 23000;
+
+    const USER_ACTIVE = 1;
+
+    const CLIENT_ACTIVE = 1;
+
+    const MIN_DATE_CHECK_POST_PAYMENT = "-1 year";
+
+    const DATE_FORMAT = "Y-m-d";
+
+    const DEFAULT_RECEIPT_LANGUAGE = "en";
+
+    const DEFAULT_PAYMENT_ORIGIN = "OTHERS";
+
+    const DEFAULT_PAYMENT_ORIGIN_ID = 5;
+
+    const DEFAULT_LANGUAGE_CODE = "en";
+
+    const DEFAULT_TIMEZONE = '{{item.countryzone}}';
+
+    const PAYMENT_MODE = 'MOBILE';
+
+    const API_ERRORS_URL = '{{REPORTING_SERVICE_API}}';
+
+    const SERVER_NAME = 'ca1-sd.mau.cellulant.com';
+
+    const DEFAULT_COUNTRY = '{{item.countrycode|upper}}';
+
+    const API_ERRORS_ON = 0;
+
+    /**
+     * Connection time out.
+     */
+    const CONNECTION_TIMEOUT = 30;
+    /**
+     * Name of the country instance and app name
+     */
+    const APPLICATION_NAME = '{{item.countrycode}}_reversals';
+
+    const POST_PAYMENT_MAXIMUM_LIMIT = 500;
+
+    /**
+     * Merchant tier mappings.
+     * This maps the merchant tier code to the merchant tier ID
+     */
+    public static $MERCHANT_TIERS = array(
+        "A" => 1,
+        "B" => 2,
+        "C" => 3,
+    );
+
+    const INACTIVE_STATE = 3;
+
+    /**
+     * Mula APP failed payment message
+     */
+    static $APP_NOTIFICATION_PAYMENT_ORIGIN = array(
+        1,
+        2);
+
+    /**
+     * Mula APP failed payment message
+     */
+    const IMPLICIT_ATTRIBUTE_FOR_MULA_APP = 66;
+
+    const IS_REMINDER = 2;
+
+    const IS_APP_NOTIFICATION = 1;
+
+    const MAX_NOTIFICATION_RETRIES = 5;
+
+    /**
+     * Mula APP failed payment message
+     */
+    const MULA_FAILED_PAYMENT = "Failed (Not Charged)";
+
+    const FETCH_PAYMENTS_MAXIMUM_LIMIT = 500;
+
+    const FETCH_PAYMENTS_DEFAULT_LIMIT = 50;
+
+    const MAX_BATCH_COUNT = 500;
+
+    /**
+     * Limit for database unique fetch.
+     *
+     * @var int
+     */
+    const FETCH_UNIQUE_RESULT = 1;
+
+    /**
+     * Refunds and reversalsAPI
+     */
+
+    const REFUNDS_AND_REVERSALS_QUEUE_NAME = "IN.{{item.countrycode|upper}}.CPG.REFUNDS";
+
+
+    #############AUTO REVERSAL CONFIGS################
+    const AUTO_REVERSALS_QUEUE="IN.{{item.countrycode|upper}}.CPG.REVERSALS";
+    const AUTO_REVERSALS_QUEUE_FILE="/srv/html-{{item.countrycode}}/hub/crons/retrypublishercron/failedPublishes/IN_{{item.countrycode|upper}}_CPG.REVERSALS_.txt";
+    const AUTO_REVERSALS_REFUND_MODE="reversal";
+    #############AUTO REVERSAL CONFIGS################
+
+    public static $APP_MESSAGE_TEMPLATES = array(
+        'initiated' => "Dear ^CUSTOMER^ we  have successfully initiated a reversal request for your payment of ^CURRENCY^ ^AMOUNT^ for payment with receiptnumber ^RECEIPTNUMBER^",
+        'completed' => "Dear ^CUSTOMER^ we  have successfully  reversed your payment of ^CURRENCY^ ^AMOUNT^ for payment with receiptnumber ^RECEIPTNUMBER^",
+        'failed' => "Dear ^CUSTOMER^  a reversal request for payment  of ^CURRENCY^ ^AMOUNT^ with receiptnumber ^RECEIPTNUMBER^ has failed",
+        'failedretry' => "Dear ^CUSTOMER^  a reversal request for payment  of ^CURRENCY^ ^AMOUNT^ with receiptnumber ^RECEIPTNUMBER^ has been rejected it will be retried after a while"
+    );
+
+
+    public static $SERVICES_ON_MULA_WHITELIST = array(
+        15,
+        20,
+        1443,
+        147,
+        34,
+        90);
+
+    public static $REFUND_TYPES= array('bank', 'card', 'momo');
+
+    public static $STATUSES_ALLOWED_FOR_REVERSAL=array(144,139,141);
+    const  ENABLE_PAYER_CLIENT_VALIDATION=true;
+
+
+
+
+}

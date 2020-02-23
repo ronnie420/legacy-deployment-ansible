@@ -1,0 +1,58 @@
+---
+# tasks file for coreapis
+- name: Creates Applications directory
+  file:
+    path: '/var/www/html-{{item.path}}/hub/services/paymentGateway'
+    state: directory
+  with_items:
+    - "{{ country }}"
+
+- name: Set Applications directory permissions
+  file:
+    dest: '/var/www/html-{{item.path}}/hub/services/paymentGateway'
+    state: directory
+    mode: 0775
+    recurse: yes
+  with_items:
+    - "{{ country }}"
+
+- name: GIT export file
+  git:
+    repo: 'https://{{ githubuser }}:{{ githubpassword }}@{{gitRepo}}{{item.0.name}}.git'
+    dest: '/var/www/html-{{item.1.path}}/hub/services/paymentGateway/{{item.0.name}}'
+    accept_hostkey: yes
+  with_nested:
+   - "{{ content }}"
+   - "{{ country }}"
+
+
+- name: Create Log directory
+  file:
+    path: '/var/log/applications/{{item.1.path}}/hub/core'
+    state: directory
+  with_nested:   
+    - "{{ content }}"
+    - "{{ country }}"
+
+- name: Create Log Files
+  file:
+    path: '/var/log/applications/{{item.0.path}}/hub/core/{{item.0.path}}_core_{{item.1.kind}}.log'
+    state: touch
+    mode: 0777
+  with_nested:   
+    - "{{ country }}"
+    - "{{ log }}"
+
+- name: Move foo to bar
+  command: mv "/var/www/html-{{item.path}}/hub/services/paymentGateway/beepjsonapi" "/var/www/html-{{item.path}}/hub/services/paymentGateway/XML"
+  with_items:
+   - "{{ country }}"
+
+- name: Move foo to bar
+  command: mv "/var/www/html-{{item.countrycode}}/hub/services/paymentGateway/beepxmlapi" "/var/www/html-{{item.countrycode}}/hub/services/paymentGateway/JSON"
+  with_items:
+   - "{{ country }}"
+
+- name: copy application config.php files
+  template: src="{{ item.applicationconf.tempsrc }}" dest="{{appconfiglocation}}/html-{{item.countrycode}}/hub/services/paymentGateway/{{item.name}}/lib/{{item.applicationconf.tempdest}}"
+  loop:  "{{APPLICATIONCONFIGS}}"

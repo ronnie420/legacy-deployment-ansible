@@ -1,0 +1,39 @@
+---
+# tasks file for UI
+
+- name: Creates Applications directory
+  file:
+    path: '/var/www/html-{{item.path}}'
+    state: directory
+  with_items:
+    - "{{ country }}"
+
+- name: Set Applications directory permissions
+  file:
+    dest: '/var/www/html-{{item.path}}'
+    state: directory
+    mode: 0775
+    recurse: yes
+  with_items:
+    - "{{ country }}"
+
+- name: GIT export file
+  git:
+    repo: 'https://{{ githubuser }}:{{ githubpassword }}@{{gitRepo}}/{{item.0.name}}.git'
+    dest: '/var/www/html-{{item.1.path}}/{{item.0.name}}'
+    accept_hostkey: yes
+  with_nested:
+   - "{{ content }}"
+   - "{{ country }}"
+
+- name: copy application setup.php files
+  template: src="setup.j2" dest="{{appconfiglocation}}/html-{{item.countrycode}}/client/protected/config/extras/setup.php"
+  loop:  "{{APPLICATIONCONFIGS}}"
+
+- name: copy application main files
+  template: src="main.j2" dest="{{appconfiglocation}}/html-{{item.countrycode}}/client/protected/config/main.php"
+  loop:  "{{APPLICATIONCONFIGS}}"
+
+- name: copy application main for admin files
+  template: src="main.j2" dest="{{appconfiglocation}}/html-{{item.countrycode}}/admin/protected/config/main.php"
+  loop:  "{{APPLICATIONCONFIGS}}"

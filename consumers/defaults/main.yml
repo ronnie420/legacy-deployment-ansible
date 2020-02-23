@@ -1,0 +1,419 @@
+---
+
+gitRepo: git.prod.mizizi.com/cpg/payments/consumers
+githubuser: "anjagi"
+githubpassword: "c3njir72414"
+
+#application pat
+
+country:
+
+    - path: gh
+    # - path: nm
+    # - path: gh
+    # - path: rw
+    # - path: mz
+    # - path: tz
+    # - path: zw
+    # - path: zm
+
+
+hubDir:
+    - type: consumers
+
+content:
+    - name: auto-reversal-consumer
+    - name: c2bcallbackconsumer
+    - name: chargingconsumer    
+    - name: consumerframework
+    #- ame: exceptionalpayments
+    - name: messagingconsumer
+    - name: paymentack
+    - name: paymentpusher    
+    - name: postpaymentconsumer
+    - name: reconactor
+    - name: reconextractor
+    - name: reconmatcher
+    - name: statuspusher    
+    - name: refundsconsumer
+log:
+    - kind: info
+    - kind: error
+    - kind: debug
+    - kind: fatal
+
+#Global variables
+
+#Database configs
+DBHOST: "ma-db.cyo4n0yy0isg.eu-west-1.rds.amazonaws.com"
+DBPORT: 3306
+MYSQL_MAX_CONNECTIONS: 100
+
+#RabbitMQ configs
+MQHOST: "pmq-lb-rabbit-84922e324c27255a.elb.eu-west-1.amazonaws.com"
+MQPORT: 5672
+
+
+#Redis configs
+REDISHOST: '10.101.11.51'
+REDISPORT: 6379
+REDISPASSWORD: 'uG3ajW5GqPxIYRsv'
+
+#Timeout configs
+CONNECTION_TIMEOUT: 15000
+READ_TIMEOUT: 15000
+sleeptime : 200
+replyTimeout :
+
+#Application configs
+NUMBER_OF_THREADS: 5
+beepJsonApiUrl:
+
+#DCIPs
+
+SACA: ca1-ke.dc1.mizizi.com
+SBCA: ca1-sb.dc1.mizizi.com
+SCCA: ca1-sc.dc1.mizizi.com
+SECA: ca1-se.dc1.mizizi.com
+SDCA: ca1-sd.dc1.mizizi.com
+
+#Loadbalancers configs
+CLIENTAPPSLOADBALANCER: internal-cpg-core-lb-62008288.eu-west-1.elb.amazonaws.com
+MNOAPPSLOADBALANCER:
+
+#server IPs congigs
+CLIENTAPPSIP: 10.101.11.221
+MNOAPPSIP: 10.101.11.103
+CLIENTJDAPPSIP: 10.101.11.89
+MNOAPPSJDIP: 10.101.13.204
+
+REPORTINGMICROSIP : '10.250.4.128:9001'
+REPORTING_SERVICE_API: "http://{{REPORTINGMICROSIP}}/api/reporting/v1/"
+
+BASEFETCHINVOICES_URL: '/hub/services/producers/coreAPI/Fetch_Invoices/public/'
+BASE_PAYMENTS_URL : '/hub/services/producers/coreAPI/Payments/public/'
+BASE_PROFILING_URL: '/hub/services/producers/coreAPI/Profiling/public/'
+BASE_INVOICES_URL : '/hub/services/producers/coreAPI/Invoices/public/'
+BASE_REVERSALS_URL : '/hub/services/producers/coreAPI/Reversals/public/'
+BASE_FETCH_PAYMENTS_URL : '/hub/services/producers/coreAPI/Fetch_Payments/public/'
+BASE_SERVICES_URL: '/hub/services/producers/coreAPI/Services/public/'
+BASE_LIBRARY_URL : '/hub/services/producers/coreAPI/Library/public/'
+basebeepurl : 'hub/services/paymentGateway/JSON/'
+
+#Environment configs
+APPLICATION_ENV: 'PROD'
+REVERSALs_WRAPPER_API:
+
+#Logs configs
+LOGSLOCATION: '/var/log/applications'
+
+consumersLocation : '/apps'
+consumershubLocation : '/hub/consumers'
+
+
+#Array of countrycodes and it's ports
+COUNTRYCONFIGS:
+  countrycode:
+  dbname:
+  dbuser:
+  dbpassword:
+  countryport:
+  mquser:
+  mqpassword:
+
+APPLICATIONCONFIGS:
+  - name : auto-reversal-consumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "autoReversalg_gh"
+      dbpassword : "MLPQ7HPsCkFqqgZ5"
+      mquser : "tz_ReversalgMuSER"
+      mqpassword : "MLPQ7HPsCkFqqgZ5"
+      tempsrc : "auto-reversal-consumer.j2"
+      tempdest : "properties.xml"
+  - name : c2bcallbackconsumer
+    countrycode: gh
+    countryport: 9007
+    countrycurrency :
+    applicationconf:
+      dbuser : "c2bconsumer_gh"
+      dbpassword : "LPZ5EAws8xm7RYnQ"
+      mquser : "tz_consumer"
+      mqpassword : "LPZ5EAws8xm7RYnQ"
+      tempsrc : "C2BCallbackConsumer.j2"
+      tempdest : "C2BCallbackConsumer.xml"
+  - name : chargingconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "chargingconsumer_gh"
+      dbpassword : "bqdJSQ8fHXmR3Kmf"
+      mquser : "gh_chargingconsumer"
+      mqpassword : "bqdJSQ8fHXmR3Kmf"
+      tempsrc : "ChargingConsumer.j2"
+      tempdest : "ChargingConsumer.xml"
+      apiusername :
+      apipassword :
+      MNOWrapperURL :
+  - name : consumer-framework
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "consumerframework_gh"
+      dbpassword : "2Gw2GG3aStrNjJpX"
+      mquser : "gh_consumerframework"
+      mqpassword : "2Gw2GG3aStrNjJpX"
+      tempsrc : "ConsumerFramework.j2"
+      tempdest : "ConsumerFramework.xml"
+  - name : messagingconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "messagingconsumer_gh"
+      dbpassword : "gr9AfCXaNxLP7xaS"
+      mquser : "gh_messagingconsumer"
+      mqpassword : "gr9AfCXaNxLP7xaS"
+      tempsrc : "messagingconsumer.j2"
+      tempdest : "properties.xml.xml"
+      singlesmsapiuser : "singlesms_api_user"
+      singlesmsapipwd :  "s!ngl3sm#$@p!_us3r"
+      singlesmsapiIP : {{SCCA}}
+      appnotifuser : "singlesms_api_user"
+      appnotifpwd :  "s!ngl3sm#$@p!_us3r"
+  - name : paymentack
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "paymentack_gh"
+      dbpassword : "E7dR2mH5AhVa6nG7"
+      mquser : "gh_payment_ack"
+      mqpassword : "E7dR2mH5AhVa6nG7"
+      tempsrc : "PaymentACKConsumerConfigs.j2"
+      tempdest : "PaymentACKConsumerConfigs.xml "
+      RefundsAPIUsername : "refunds_api_user"
+      RefundsAPIPassword : "r3f#nd3@p!_us3r"
+  - name : paymentpusher
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "paymentpusher_gh"
+      dbpassword : "affqyk4UhPNYH65f"
+      mquser : "gh_payment_pusher"
+      mqpassword : "affqyk4UhPNYH65f"
+      tempsrc : "PaymentPusherConsumerConfigs.j2"
+      tempdest : "PaymentPusherConsumerConfigs.xml"
+  - name : postpaymentconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "postPayment_gh"
+      dbpassword : "nGjXmj3NkkvmJY8T" 
+      mquser : "tz_post_Payment"
+      mqpassword : "nGjXmj3NkkvmJY8T"
+      tempsrc : "PostPaymentConsumer.j2"
+      tempdest : "PostPaymentConsumer.xml"
+  - name : reconactor
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "reconActor_gh"
+      dbpassword : "DG6jh2KMytv3xzqU"
+      mquser : "gh_reconActor"
+      mqpassword : "DG6jh2KMytv3xzqU"
+      tempsrc : "ReconActorConfigs.j2"
+      tempdest : "ReconActorConfigs.xml"
+      postPaymentAPIusername :
+      postPaymentAPIpassword :
+  - name : reconextractor
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "reconExtractor_gh"
+      dbpassword : "pcKgGSUE9crAsVhM"
+      mquser : "gh_recon_Extractor"
+      mqpassword : "pcKgGSUE9crAsVhM"
+      tempsrc : "ReconExtractorConfigs.j2"
+      tempdest : "ReconExtractorConfigs.xml"
+      postPaymentAPIusername :
+      postPaymentAPIpassword :
+  - name : reconmatcher
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "recoMatcher_gh"
+      dbpassword : "Jt9cFSGSmYJ32JzT"
+      mquser : "gh_recoMatcher"
+      mqpassword : "Jt9cFSGSmYJ32JzT"
+      tempsrc : "ReconMatcherConfigs.j2"
+      tempdest : "ReconMatcherConfigs.xml"
+  - name : statuspusher
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "refundsConsumer_gh"
+      dbpassword : "UUzpEenfv2smKmWQ"
+      mquser : "gh_refundsConsumer"
+      mqpassword : "UUzpEenfv2smKmWQ"
+      tempsrc : "StatusPusher.j2"
+      tempdest : "StatusPusher.xml"
+      statuspusherWrapper : {{SCCA}}
+  - name : refundsconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "statusPusher_gh"
+      dbpassword : "7CFqVs73sbsU3DKK"
+      mquser : "gh_statusPusher"
+      mqpassword : "7CFqVs73sbsU3DKK"
+      tempsrc : "RefundsConsumerProperties.j2"
+      tempdest : "RefundsConsumerProperties.xml"
+
+#gambia
+- name : auto-reversal-consumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "autoReversalg_gh"
+      dbpassword : "MLPQ7HPsCkFqqgZ5"
+      mquser : "tz_ReversalgMuSER"
+      mqpassword : "MLPQ7HPsCkFqqgZ5"
+      tempsrc : "auto-reversal-consumer.j2"
+      tempdest : "properties.xml"
+  - name : c2bcallbackconsumer
+    countrycode: gh
+    countryport: 9007
+    countrycurrency :
+    applicationconf:
+      dbuser : "c2bconsumer_gh"
+      dbpassword : "LPZ5EAws8xm7RYnQ"
+      mquser : "tz_consumer"
+      mqpassword : "LPZ5EAws8xm7RYnQ"
+      tempsrc : "C2BCallbackConsumer.j2"
+      tempdest : "C2BCallbackConsumer.xml"
+  - name : chargingconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "chargingconsumer_gh"
+      dbpassword : "bqdJSQ8fHXmR3Kmf"
+      mquser : "gh_chargingconsumer"
+      mqpassword : "bqdJSQ8fHXmR3Kmf"
+      tempsrc : "ChargingConsumer.j2"
+      tempdest : "ChargingConsumer.xml"
+      apiusername :
+      apipassword :
+      MNOWrapperURL :
+  - name : consumer-framework
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "consumerframework_gh"
+      dbpassword : "2Gw2GG3aStrNjJpX"
+      mquser : "gh_consumerframework"
+      mqpassword : "2Gw2GG3aStrNjJpX"
+      tempsrc : "ConsumerFramework.j2"
+      tempdest : "ConsumerFramework.xml"
+  - name : messagingconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "messagingconsumer_gh"
+      dbpassword : "gr9AfCXaNxLP7xaS"
+      mquser : "gh_messagingconsumer"
+      mqpassword : "gr9AfCXaNxLP7xaS"
+      tempsrc : "messagingconsumer.j2"
+      tempdest : "properties.xml.xml"
+      singlesmsapiuser : "singlesms_api_user"
+      singlesmsapipwd :  "s!ngl3sm#$@p!_us3r"
+      singlesmsapiIP : {{SCCA}}
+      appnotifuser : "singlesms_api_user"
+      appnotifpwd :  "s!ngl3sm#$@p!_us3r"
+  - name : paymentack
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "paymentack_gh"
+      dbpassword : "E7dR2mH5AhVa6nG7"
+      mquser : "gh_payment_ack"
+      mqpassword : "E7dR2mH5AhVa6nG7"
+      tempsrc : "PaymentACKConsumerConfigs.j2"
+      tempdest : "PaymentACKConsumerConfigs.xml "
+      RefundsAPIUsername : "refunds_api_user"
+      RefundsAPIPassword : "r3f#nd3@p!_us3r"
+  - name : paymentpusher
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "paymentpusher_gh"
+      dbpassword : "affqyk4UhPNYH65f"
+      mquser : "gh_payment_pusher"
+      mqpassword : "affqyk4UhPNYH65f"
+      tempsrc : "PaymentPusherConsumerConfigs.j2"
+      tempdest : "PaymentPusherConsumerConfigs.xml"
+  - name : postpaymentconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "postPayment_gh"
+      dbpassword : "nGjXmj3NkkvmJY8T" 
+      mquser : "tz_post_Payment"
+      mqpassword : "nGjXmj3NkkvmJY8T"
+      tempsrc : "PostPaymentConsumer.j2"
+      tempdest : "PostPaymentConsumer.xml"
+  - name : reconactor
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "reconActor_gh"
+      dbpassword : "DG6jh2KMytv3xzqU"
+      mquser : "gh_reconActor"
+      mqpassword : "DG6jh2KMytv3xzqU"
+      tempsrc : "ReconActorConfigs.j2"
+      tempdest : "ReconActorConfigs.xml"
+      postPaymentAPIusername :
+      postPaymentAPIpassword :
+  - name : reconextractor
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "reconExtractor_gh"
+      dbpassword : "pcKgGSUE9crAsVhM"
+      mquser : "gh_recon_Extractor"
+      mqpassword : "pcKgGSUE9crAsVhM"
+      tempsrc : "ReconExtractorConfigs.j2"
+      tempdest : "ReconExtractorConfigs.xml"
+      postPaymentAPIusername :
+      postPaymentAPIpassword :
+  - name : reconmatcher
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "recoMatcher_gh"
+      dbpassword : "Jt9cFSGSmYJ32JzT"
+      mquser : "gh_recoMatcher"
+      mqpassword : "Jt9cFSGSmYJ32JzT"
+      tempsrc : "ReconMatcherConfigs.j2"
+      tempdest : "ReconMatcherConfigs.xml"
+  - name : statuspusher
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "refundsConsumer_gh"
+      dbpassword : "UUzpEenfv2smKmWQ"
+      mquser : "gh_refundsConsumer"
+      mqpassword : "UUzpEenfv2smKmWQ"
+      tempsrc : "StatusPusher.j2"
+      tempdest : "StatusPusher.xml"
+      statuspusherWrapper : {{SCCA}}
+  - name : refundsconsumer
+    countrycode: gh
+    countryport: 9007
+    applicationconf:
+      dbuser : "statusPusher_gh"
+      dbpassword : "7CFqVs73sbsU3DKK"
+      mquser : "gh_statusPusher"
+      mqpassword : "7CFqVs73sbsU3DKK"
+      tempsrc : "RefundsConsumerProperties.j2"
+      tempdest : "RefundsConsumerProperties.xml"
+

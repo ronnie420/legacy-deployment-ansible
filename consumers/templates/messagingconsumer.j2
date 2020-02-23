@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="MQ_PREFETCH_COUNT">1</entry>
+    <entry key="MQ_HOST">{{MQHOST}}</entry>
+    <entry key="MQ_USERNAME">{{item.applicationconf.mquser}}</entry>
+    <entry key="MQ_PASSWORD">{{item.applicationconf.mquser}}</entry>
+    <entry key="MQ_PORT">{{MQPORT}}</entry>
+    <entry key="MQ_EXCHANGE">IN.{{item.countrycode | upper}}.CPG.EXCHANGE</entry>
+    <entry key="MQ_QUEUE_NAME">IN.{{item.countrycode | upper}}.CPG.MESSAGING</entry>
+    <entry key="MQ_RETRIES_QUEUE_NAME">IN.{{item.countrycode | upper}}.CPG.MESSAGING.RETRIES</entry>
+    <entry key="NUM_OF_CHILDREN_THREADS">2</entry>
+    
+    <!--comment>Daemon operation settings.</comment-->
+    <entry key="SLEEP_TIME">{{sleeptime}}</entry>
+    <entry key="HTTP_SUCCESS">200</entry>
+    <entry key="CONNECTION_TIMEOUT">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="READ_TIMEOUT">{{READ_TIMEOUT}}</entry>
+    <entry key="MAX_NUMBER_OF_SENDS">5</entry>
+    <entry key="COUNTRY_CODE">{{item.countrycode | upper}}</entry>
+    <entry key="DEFAULT_MESSAGE_RETRIES">3</entry>
+    
+    <!--comment>Logging related settings.</comment-->  
+    <entry key="APPLICATION_ENV">{{APPLICATION_ENV}}</entry>
+    <entry key="INFO_LOG_LEVEL">INFO</entry>
+    <entry key="DEBUG_LOG_LEVEL">DEBUG</entry>
+    <entry key="ERROR_LOG_LEVEL">ERROR</entry>
+    <entry key="INFO_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/messagingconsumer/{{item.countrycode}}_messagingconsumer_info.log</entry>
+    <entry key="DEBUG_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/messagingconsumer/{{item.countrycode}}_messagingconsumer_debug.log</entry>
+    <entry key="ERROR_LOG_FILE">{{LOGSLOCATION}}/{{item.countrycode}}/hub/messagingconsumer/{{item.countrycode}}_messagingconsumer_error.log</entry>
+    
+    <!--comment> MYSQL Database Settings.</comment-->
+    <entry key="MYSQL_HOST">{{MQHOST}}</entry>
+    <entry key="MYSQL_PORT">{{MQPORT}}</entry>
+    <entry key="MYSQL_USERNAME">{{item.applicationconf.mquser}}</entry>
+    <entry key="MYSQL_PASSWORD">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="MYSQL_DATABASE">hub_{{item.countrycode}}</entry>
+    <entry key="MYSQL_MAX_CONNECTIONS">{{MYSQL_MAX_CONNECTIONS}}</entry>
+
+    <!-- Message statuses  -->
+    <entry key="PROCESSED_STATUS">5</entry>
+    <entry key="UNPROCESSED_STATUS">0</entry>
+    <entry key="ESCALATED_STATUS">103</entry>
+    
+    <!--Single SMS API related settings.</comment-->
+    <!--<entry key="SINGLESMS_API_URL">http://localhost/stubs/tests/messaging/successSms.php</entry>-->
+    <entry key="SINGLESMS_API_URL">http://{{singlesmsapiIP}}:{{countryport}}/hub/channels/api/responses/SingleSMSAPI.php</entry>
+    <entry key="SINGLESMS_API_USERNAME">{{item.applicationconf.singlesmsapiuser}}</entry>
+    <entry key="SINGLESMS_API_PASSWORD">{{item.applicationconf.singlesmsapipwd}}</entry>
+    <entry key="SINGLESMS_CONNECTOR_RULE">102</entry> 
+    
+    <!--App Notifications API related settings-->
+    <!--<entry key="APPNOTIFICATION_API_URL">http://localhost/stubs/tests/messaging/appSuccess.php</entry>-->
+    <entry key="APPNOTIFICATION_API_URL">http://{{singlesmsapiIP}}:{{countryport}}/hub/services/api/notificationAPI/web/singleNotification.php</entry>
+    <entry key="APPNOTIFICATION_API_USERNAME">{{item.applicationconf.appnotifuser}}</entry>
+    <entry key="APPNOTIFICATION_API_PASSWORD">{{item.applicationconf.appnotifpwd}}</entry>
+    <entry key="APPNOTIFICATION_API_LAST_ACTIVE">30</entry>
+    
+    <entry key="ECOBANK_ATTRIBUTE_KEY_ID">61</entry>
+    <entry key="ECOBANK_APP_REQUEST_ORIGIN_ID">2</entry>
+    <entry key="MULA_APP_REQUEST_ORIGIN_ID">70</entry>
+    <entry key="APPS_CLIENT_ID">2</entry>
+    
+    <!-- Email Parameters --> 
+    <entry key="HUB_MAILER_USERNAME">no-reply@cellulant.com</entry>
+    <entry key="EMAIL_RECEIPT_TYPE">2</entry>
+        
+    <!-- reporting API configs -->
+    <entry key="REPORT_FAULTS">1</entry>
+    <!--<entry key="REPORTING_SERVICE_API">http://localhost/stubs/tests/messaging/appSuccess.php</entry>-->
+    <entry key="REPORTING_SERVICE_API">{{REPORTING_SERVICE_API}}</entry>
+    <entry key="REPORTING_SERVICE_RETRIES">2</entry>
+
+    <entry key="FAILED_QUEUES_MESSAGES_FILE">/var/log/applications/{{{{item.countrycode}}}}/hub/failedPublishes/IN.{{item.countrycode | upper}}.CPG.MESSAGING.RETRIES.txt</entry>
+    
+</properties>

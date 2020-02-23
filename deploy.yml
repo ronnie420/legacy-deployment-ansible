@@ -1,0 +1,13 @@
+---
+- name: Deploying set E and D Core APIs
+  hosts: CAppsservers
+  become: yes
+  become_method: sudo
+  remote_user: ansible_user
+
+  roles:
+  - coreapis
+  - UI
+  - queues
+  - producers
+  - consumers

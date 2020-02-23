@@ -1,0 +1,14 @@
+# - name: debug dictionary
+#   debug: msg="{{ item.0.name }}_{{item.1.0}}_{{item.0.countrycode}}"
+#   with_subelements: 
+#     - "{{ APPLICATIONCONFIGS }}"
+#     - applicationconf
+
+- name: copy application config files
+  template: src="{{ item.applicationconf.tempsrc }}" dest="{{consumersLocation}}/{{item.countrycode}}/{{consumershubLocation}}/{{item.name}}/{{item.applicationconf.tempdest}}"
+  loop:  "{{APPLICATIONCONFIGS}}"
+
+# - name: create servers
+#   debug: 
+#     msg : "{{ item.applicationconf.tempsrc }}"
+#   loop:  "{{APPLICATIONCONFIGS}}"

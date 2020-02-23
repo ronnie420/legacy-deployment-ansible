@@ -1,0 +1,186 @@
+---
+
+gitRepo: git.prod.mizizi.com/cpg/payments/producers/coreapi
+githubuser: "test_user"
+githubpassword: "1234"
+
+country:
+
+    - path: gh
+
+content:
+    - name: Fetch_Invoices
+    - name: Fetch_Payments
+    - name: Invoices 
+    - name: Library
+    - name: Payments
+    - name: Profiling
+    - name: Reversals
+    - name: Services  
+
+
+log:
+    - kind: info
+    - kind: error
+    - kind: debug
+    - kind: fatal
+
+
+    #Database configs
+DBHOST: "ma-db.cyo4n0yy0isg.eu-west-1.rds.amazonaws.com"
+DBPORT: 3306
+MYSQL_MAX_CONNECTIONS: 100
+
+#RabbitMQ configs
+MQHOST: "pmq-lb-rabbit-84922e324c27255a.elb.eu-west-1.amazonaws.com"
+MQPORT: 5672
+
+
+#Redis configs
+REDISHOST: '10.101.11.51'
+REDISPORT: 6379
+REDISPASSWORD: 'uG3ajW5GqPxIYRsv'
+
+#Timeout configs
+CONNECTION_TIMEOUT: 15000
+READ_TIMEOUT: 15000
+sleeptime : 200
+replyTimeout :
+
+#Application configs
+NUMBER_OF_THREADS: 5
+beepJsonApiUrl:
+
+#DCIPs
+
+SACA: ca1-ke.dc1.mizizi.com
+SBCA: ca1-sb.dc1.mizizi.com
+SCCA: ca1-sc.dc1.mizizi.com
+SECA: ca1-se.dc1.mizizi.com
+SDCA: ca1-sd.dc1.mizizi.com
+
+#Loadbalancers configs
+CLIENTAPPSLOADBALANCER: internal-cpg-core-lb-62008288.eu-west-1.elb.amazonaws.com
+MNOAPPSLOADBALANCER:
+
+#server IPs congigs
+CLIENTAPPSIP: 127.0.0.1
+
+MNOAPPSIP: 127.0.0.1
+CLIENTJDAPPSIP: 127.0.0.1
+MNOAPPSJDIP: 127.0.0.1
+
+REPORTINGMICROSIP : '10.250.4.128:9001'
+REPORTING_SERVICE_API: "http://{{REPORTINGMICROSIP}}/api/reporting/v1/"
+
+BASEFETCHINVOICES_URL: '/hub/services/producers/coreAPI/Fetch_Invoices/public/'
+BASE_PAYMENTS_URL : '/hub/services/producers/coreAPI/Payments/public/'
+BASE_PROFILING_URL: '/hub/services/producers/coreAPI/Profiling/public/'
+BASE_INVOICES_URL : '/hub/services/producers/coreAPI/Invoices/public/'
+BASE_REVERSALS_URL : '/hub/services/producers/coreAPI/Reversals/public/'
+BASE_FETCH_PAYMENTS_URL : '/hub/services/producers/coreAPI/Fetch_Payments/public/'
+BASE_SERVICES_URL: '/hub/services/producers/coreAPI/Services/public/'
+BASE_LIBRARY_URL : '/hub/services/producers/coreAPI/Library/public/'
+basebeepurl : 'hub/services/paymentGateway/JSON/'
+
+#Environment configs
+APPLICATION_ENV: 'PROD'
+REVERSALs_WRAPPER_API:
+
+#Logs configs
+LOGSLOCATION: '/var/log/applications'
+appconfiglocation : '/srv'
+
+consumersLocation : '/apps'
+consumershubLocation : '/hub/consumers'
+
+APPLICATIONCONFIGS:
+  #Ghana
+  - name : Fetch_Payments
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "fetch_payments_gh"
+      dbpassword : "rPRuV36HZsY44UYA"
+      mquser : "gh_fetch_payments"
+      mqpassword : "rPRuV36HZsY44UYA"
+      tempsrc : "Fetch_Payments.j2"
+      tempdest : "Configs.php"
+  - name : Fetch_Invoices
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "fetch_invoices_gh"
+      dbpassword : "SbQbFAKM4b6gX9De"
+      mquser : "gh_fetch_invoices"
+      mqpassword : "SbQbFAKM4b6gX9De"
+      tempsrc : "Fetch_Invoices.j2"
+      tempdest : "Configs.php"
+  - name : Invoices
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "invoices_gh"
+      dbpassword : "AfbuDXJznAss6Pm6"
+      mquser : "gh_invoices"
+      mqpassword : "AfbuDXJznAss6Pm6"
+      tempsrc : "Invoices.j2"
+      tempdest : "Configs.php"
+  - name : Library
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "library_gh"
+      dbpassword : "Hh8ddAnTtfbXfBZC"
+      mquser : "gh_library"
+      mqpassword : "Hh8ddAnTtfbXfBZC"
+      tempsrc : "Library.j2"
+      tempdest : "Configs.php"
+  - name : Payments
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "payments_gh"
+      dbpassword : "dJyM4DbxTb6fDdQv"
+      mquser : "gh_payments"
+      mqpassword : "dJyM4DbxTb6fDdQv"
+      tempsrc : "Payments.j2"
+      tempdest : "Configs.php"
+  - name : Profiling
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "profiling_gh"
+      dbpassword : "65bBwpx5nz6bdeZV"
+      mquser : "gh_profiling"
+      mqpassword : "65bBwpx5nz6bdeZV"
+      tempsrc : "Profiling.j2"
+      tempdest : "Configs.php"
+  - name : Reversals
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "reversals_gh"
+      dbpassword : "D9ev7phjt6FdQaLc"
+      mquser : "gh_rversals"
+      mqpassword : "D9ev7phjt6FdQaLc"
+      tempsrc : "Reversals.j2"
+      tempdest : "Configs.php"
+  - name : Services
+    countrycode: gh
+    countryport: 9007
+    countryzone: "Africa/Accra"
+    applicationconf:
+      dbuser : "services_gh"
+      dbpassword : "Hw6SfPK4xLXDebkg"
+      mquser : "gh_services"
+      mqpassword : "Hw6SfPK4xLXDebkg"
+      tempsrc : "Services.j2"
+      tempdest : "Configs.php"

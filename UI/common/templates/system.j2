@@ -1,0 +1,130 @@
+<?php
+
+//live configs
+/*
+  //Contains system configurations\
+  $url = 'hub';
+  $menuServerName = 'http://197.159.100.247:9001/';
+  $uploadsPath = '/srv/cellulantApps/hub4/admin/web/';//'/srv/applications/hub4/trunk/admin/web/';
+
+  return array(
+  'defaultCountry'=>'Kenya',
+  'defaultDialCode'=>'254',
+  'COUNTRY_DIAL_CODE' => 254,
+  #URLS
+  'adminUI'=>'http://197.159.100.247:9001/hub/admin',
+  'clientUI'=>'http://197.159.100.247:9001/hub/client',
+  'ClientUrlIP'=>'http://197.159.100.247:9001/hub/client',
+
+ */
+
+//Contains system configurations\
+$url = 'hub';
+$menuServerName = 'http://{{item.countrycode}}.cellulant.com:{{item.countryport}}/';
+$uploadsPath = '/srv/html-{{item.countrycode}}/client/protected/data/uploads/';
+return array(
+    'defaultCountry' => '{{item.applicationconf.defaultCountry}}',
+    'defaultCountryCode' => '{{item.applicationconf.defaultCountryCode}}',
+    'defaultCountryID' => '{{item.applicationconf.defaultCountryID}}', #From DB. Please check..
+    'defaultDialCode' => '{{item.applicationconf.defaultDialCode}}',
+    'defaultCurrencyID' => '{{item.applicationconf.defaultCurrencyID}}',
+    'COUNTRY_DIAL_CODE' => '{{item.applicationconf.COUNTRY_DIAL_CODE}}',
+    'TODAY' => date('Y-m-d H:i:s'),
+    #SLL CONFIGS
+    'SSL_ENGINE' => false,
+    'CERTIFICATE_PATH' => '/etc/pki/tls/certs/BARCLAYS-COMODO/comodo-cellulantke.crt',
+    'KEY_PATH' => '/etc/pki/tls/certs/BARCLAYS-COMODO/comodo-cellulantke.key',
+    'PARAPHRASE' => '',
+    #URLS
+    'adminUI' => 'http://{{item.countrycode}}.cpg.cellulant.com:{{item.countryport}}/admin/',
+    'clientUI' => 'http://{{item.countrycode}}.cpg.cellulant.com:{{item.countryport}}/client/',
+    'ClientUrlIP' => 'http://{{item.countrycode}}.cpg.cellulant.com:{{item.countryport}}',
+    /*     * End of .66 configs* */
+    'HUBNewUserPasswordURL' => '/index.php/users/newUserPassword?&',
+    'HUBForgotPasswordURL' => 'http://{{item.countrycode}}.cpg.cellulant.com:{{item.countryport}}/client/index.php/users/resetUserPassword?&',
+    'HUBResetPasswordURL' => '/index.php/users/resetUserPassword?&',
+    #ProfilingAPI path
+    'PROFILING_API_URL' => 'http://localhost/ProfilingAPI/',
+
+    'PROFILING_API_USERNAME' => 'wananchi_api_user',
+    'PROFILING_API_PASSWORD' => '!23qweASD',
+
+    'CPG_REQUEST_ID' => 3,
+    #Invoices
+    'CANCEL_INVOICE_URL' => 'http://ca1-sd.mau.cellulant.com:{{item.countryport}}/hub/services/paymentGateway/JSON/',
+    'INVOICE_USERNAME' => 'safaricom_api_user',
+    'INVOICE_PASSWORD' => '!23qweASD',
+    #refundsAPI
+    'REFUNDS_API_URL' => 'http://localhost/UIPublisher/public/',
+    'REFUND_API_USERNAME' => 'MkenyaAPIUserUIACCESS',
+    'REFUND_API_PASSWORD' => '!23qweASD',
+    'AUTO_REVERSAL_QUEUE' => 'IN.{{item.countrycode|upper}}.AUTOREVERSALS',
+    //expiry  in minutes
+    'REFUND_CODE_EXPIRY_TIME' => 5,
+    #Cas Configurations
+
+//    'CASUrl' => 'http://localhost/casAPI/',
+    'CASUrl' => 'http://ca1-sd.mau.cellulant.com:9000/hub/api/cas2.1/api/public/',
+
+//    'CASUrl' => 'http://192.168.250.243/cas/',
+
+    'CasApplicationName' => 'CPG_{{item.countrycode|upper}}',
+    #checkout Configs
+    'checkoutAPIUrl' => 'http://localhost/CheckoutAPI/index.php',
+    //credentials used to authenticate requests from checkout
+    'checkoutUsername' => 'cellulantApiUser',
+    'checkoutPassword' => '!23qweASD',
+    'CHECKOUT_COUNTRIES' => '117, 219, 231',
+    #bulk sms api tracks consumption
+    'CREDITS_API' => "http://192.168.254.240/BulkSMSCPG/index.php/api",
+    'CREDITS_API_USERNAME' => 'cpgSysUser',
+    'CREDITS_API_PASSWORD' => 'Mkubw@101',
+    #TRACKING
+    'reprocessTime' => '3', //Time allowed for transactions to be reprocessed in days
+    #UPLOADS
+    'HUB_SERVER_URL' => 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/admin/',
+    // this is used in contact page
+    'adminEmail' => 'hub@cellulant.com',
+    #Default Settings for USSD Channels
+    'USSD_FILE_PATH' => '/srv/HUB/hubChannels/USSD/web/ussdMenus/dynamic_menus/',
+    'USSD_MENU_URL' => $menuServerName . 'USSD/web/ussdMenus/dynamic_menus/',
+    'DEFAULT_USSD_MENU' => $menuServerName . 'USSD/web/ussdMenus/dynamic_menus/calculatorMenu.php',
+    # protocolID 7 = USSD_Dynamic_Menus |
+    'DEFAULT_USSD_PROTOCOL' => 7,
+    // USSD: Internal Menu Requests  Identifies the route for an internally
+    //  hosted menu USSD request
+    'DEFAULT_USSD_CLIENT_FUNCTION_TYPE' => 2,
+    'DEFAULT_CONNECTOR_PRIORITY' => '1',
+    ###############
+    #LOGS
+    'logDirectory' => '/var/log/applications/{{item.countrycode}}/hub/client/web/runtime/', //log directory
+    'SERVICE_LOG_DIR' => "/var/log/applications/{{item.countrycode}}/hub/client/",
+    'NOTIFICATIONS_LAYER_LOG_DIR' => "/var/log/applications/{{item.countrycode}}/hub/client/",
+    'SYSTEM_LOG_LEVEL' => 10,
+    'INFO_LOG_FILE_NAME' => '{{item.countrycode}}_client_info.log',
+    'DEBUG_LOG_FILE_NAME' => '{{item.countrycode}}_client_debug.log',
+    'ERROR_LOG_FILE_NAME' => '{{item.countrycode}}_client_error.log',
+    'EXCEPTION_LOG_FILE_NAME' => '{{item.countrycode}}_client_exception.log',
+    'client_title' => 'Hub',
+    'client_slogan' => 'Hub',
+    'DATABASE_NAME' => 'hub_{{item.countrycode}}',
+    'ARCHIVE_DATABASE_NAME' => 'hub_{{item.countrycode}}',
+    # MAKER CHECKER SETTINGS
+    'PENDING_MAKER_ACTIONS_MODULE_OVERIDE GROUPS' => array("'audit'"), /* Override groups for pending maker actions module */
+    'TABLES_TO_IGNORE_ON_CHECK' => array('transactions'), /* Tables to ignore when checking */
+    'SEND_EMAIL_ON_CHECKER_REJECT' => false,
+    'RESTRICT_IP' => FALSE,
+    'ALLOWED_IP_LIST' => array(
+        '127.0.0.1',
+        '192.168.254.81'
+    ),
+    'DEFAULT_CACHE_EXPIRY' => 120, //in seconds
+    'DEFAULT_LANGUAGE' => 'Eng', //Default language---used in templates
+    'FETCH_DATA_LIMIT' => 100,
+    'UPLOADED_PAYMENTS_FOLDER' => $uploadsPath. 'payments/',
+    'UPLOADED_INVOICES_FOLDER' => $uploadsPath . 'invoices/',
+    'UPLOADED_CLIENT_LOGOS_FOLDER' => '/srv/html-{{item.countrycode}}/admin/images/logos',
+    '2FA_SMS_SOURCE' => 'CELLULANT',
+
+    )
+?>

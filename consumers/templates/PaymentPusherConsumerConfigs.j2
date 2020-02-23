@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Application Country Code-->
+    <entry key="CountryCode">{{item.countrycode | upper}}</entry>
+
+    <!--Files to Handle Failures in Publishing-->
+    <entry key="FailedACKFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_PAYMENTACK.txt</entry>
+    <entry key="FailedRetriesFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_PAYMENTPUSHER_RETRIES.txt</entry>
+
+    <!--Queues-->
+    <entry key="ACKQueue">IN.{{item.countrycode|upper}}.CPG.PAYMENTACK</entry>
+    <entry key="RetriesQueue">IN.{{item.countrycode|upper}}.CPG.PAYMENTPUSHER.RETRIES</entry>
+    <entry key="PaymentsQueue">IN.{{item.countrycode|upper}}.CPG.PAYMENTPUSHER</entry>
+
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+    <entry key="NumberOfWorkerThreads">3</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">/var/log/applications/{{item.countrycode}}/hub/paymentpusher/{{item.countrycode}}_paymentpusher_info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/{{item.countrycode}}/hub/paymentpusher/{{item.countrycode}}_paymentpusher_error.log</entry>
+    <entry key="DebugLogFile">/var/log/applications/{{item.countrycode}}/hub/paymentpusher/{{item.countrycode}}_paymentpusher_debug.log</entry>
+
+    <!--Environment the Application is Running in-->
+    <entry key="Env">test</entry>
+
+    <!--RabbitMQ tests-->
+    <entry key="RabbitMQHost">{{MQHOST}}</entry>
+    <entry key="RabbitMQPort">{{MQPORT}}</entry>
+    <entry key="RabbitMQUserName">{{item.applicationconf.mquser}}</entry>
+    <entry key="RabbitMQPassword">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    <!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry>
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_{{item.countrycode}}</entry>
+    <entry key="DBUsername">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DBPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DBMaxConnections">5</entry>
+
+    <!--Timeouts in Milliseconds-->
+    <entry key="ConnectionTimeout">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="SocketTimeout">{{READ_TIMEOUT}}</entry>
+
+    <!--Wrapper Configs-->
+    <entry key="WrapperURL">http://127.0.0.1:9000/PaymentPusherWrappers/</entry>
+
+    <!--Acknowledgment Status Codes-->
+    <entry key="SuccessfullyDeliveredCode">188</entry>
+    <entry key="RetryFailureCode">189</entry>
+    <entry key="FinalAcceptedCode">140</entry>
+    <entry key="FinalRejectedCode">141</entry>
+    <entry key="FinalEscalatedCode">103</entry>
+    <entry key="PaymentMarkedAsEscalated">219</entry>
+
+    <!--MerchantPayment Pushing Process Status Codes-->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnprocessedStatus">0</entry>
+    <entry key="ProcessingEscalatedStatus">103</entry>
+    <entry key="FailedStatus">3</entry>
+    <entry key="RetryStatuses">0</entry>
+
+    <!---->
+    <entry key="FailedStatusDescription">Payment exceeded retries</entry>
+    <entry key="FailedACKMessage">Payment exceeded retries</entry>
+    <entry key="AutoACKMessage">This record has been auto acknowledged</entry>
+
+    <!--Message Send Configs-->
+    <entry key="MaxNoOfSends">5</entry>
+    <entry key="TimeToNextSend">5000</entry>
+
+    <!--List of Statuses Accepted by Payment Pusher-->
+    <entry key="AcceptedStatuses">139</entry>
+
+    <!--API User ID of PaymentPusher Consumer-->
+    <entry key="ApplicationUserID">12</entry>
+
+</properties>

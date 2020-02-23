@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Files to Handle Failures in Publishing-->
+    <!--Convention is: Replace '.' in Queue Name with '_'-->
+    <entry key="FailedRetriesFile">{{consumersLocation}}/{{item.countrycode}}/{{consumershubLocation}}/{{item.name}}/failed_publishing/IN_{{countrycode | upper}}_CPG_CHARGING_RETRIES.txt</entry>
+
+    <!--Queues-->
+    <entry key="ChargeQueue">IN.{{item.countrycode | upper}}.CPG.CHARGING</entry>
+    <entry key="RetriesQueue">IN.{{item.countrycode | upper}}.CPG.CHARGING.RETRIES</entry>
+
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">{{LOGSLOCATION}}/{{item.countrycode}}/hub/chargingConsumer/{{item.countrycode}}_chargingConsumer_info.log</entry>
+    <entry key="ErrorLogFile">{{LOGSLOCATION}}/{{item.countrycode}}/hub/chargingConsumer/{{item.countrycode}}_chargingConsumer_error.log</entry>
+    <entry key="DebugLogFile">{{LOGSLOCATION}}/{{item.countrycode}}/hub/chargingConsumer/{{item.countrycode}}_chargingConsumer_debug.log</entry>
+
+    <!--Environment the Application is Running in-->
+    <entry key="Env">{{APPLICATION_ENV}}</entry>
+    <entry key="CountryCode">{{item.countrycode}}</entry>
+
+    <!--RabbitMQ tests-->
+    <entry key="RabbitMQHost">{{REDISHOST}}</entry>
+    <entry key="RabbitMQPort">{{REDISPORT}}</entry>
+    <entry key="RabbitMQUserName">{{REDISPASSWORD}}</entry>
+    <entry key="RabbitMQPassword">{{REDISPASSWORD}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    <!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry> 
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_{{item.countrycode}}</entry>
+    <entry key="DBUsername">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DBPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DBMaxConnections">{{MYSQL_MAX_CONNECTIONS}}</entry>
+
+    <!--Statuses-->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnProcessedStatus">2</entry>
+    <entry key="FinalEscalatedCode">401</entry>
+
+    <!--Message Retry Configs-->
+    <entry key="MaxNoOfSends">2</entry>
+    <entry key="MaxRetryTime">200000</entry>
+
+    <!--Timeout Periods-->
+    <entry key="ConnectionTimeout">{{CONNECTION_TIMEOUT}}</entry>
+    <entry key="SocketTimeout">{{READ_TIMEOUT}}</entry>
+
+    <!--IDs of Combined Services -->
+    <entry key="CombinedServicesIDs">12,12</entry>
+
+    <!--Post Payment API Credentials-->
+    <entry key="PostPaymentFunction">BEEP.postPayment</entry>
+    <entry key="FailedPaymentFunction">BEEP.logFailedPayments</entry>
+    <entry key="PostPaymentURL">http://{{CLIENTAPPSLOADBALANCER}}:{{countryport}}/{{basebeepurl}}</entry>
+    <entry key="PostPaymentAPIUsername">{{item.applicationconf.apiusername}}</entry>
+    <entry key="PostPaymentAPIPassword">{{item.applicationconf.apipassword}}</entry>
+
+    <!--MNOWrapper API Credentials-->
+    <entry key="MNOWrapperFunction">BEEP.postCharge</entry>
+    <entry key="MNOWrapperURL">{{item.applicationconf.MNOWrapperURL}}</entry>
+    <entry key="MNOWrapperAPIUsername">{{item.applicationconf.mnowrapperuser}}</entry>
+    <entry key="MNOWrapperAPIPassword">{{item.applicationconf.mnowrapperpassword}}</entry>
+
+    <!--Errors API Credentials-->
+    <entry key="ErrorsAPIURL">http://localhost/stubs/errors.php</entry>
+    <entry key="ErrorsAPIRetries">5</entry>
+
+    <!--Description for when we have totally failed to invoke the MNO-->
+    <entry key="FailedProcessingDescription">Maximum number of retries exceeded</entry>
+
+    <!--Charge Request Statuses-->
+    <entry key="ChargeWrapperProcessedStatus">341</entry>
+    <entry key="ChargeWrapperRetryStatus">345</entry>
+    <entry key="ChargeCallbackSuccessfulStatus">342</entry>
+    <entry key="ChargeCallbackFailureStatus">343</entry>
+    <entry key="ChargeWrapperProcessedDescription">Charge request processed.</entry>
+    <entry key="ChargeWrapperFailureDescription">Charge request failure.</entry>
+
+    <!--User ID of the Application Invoking-->
+    <entry key="UserID">12</entry>
+
+    <!--Timeouts For Retries to PayerClients-->
+    <entry key="PayerClientTimeouts">
+        12=5000,
+        10=60000
+    </entry>
+
+</properties>

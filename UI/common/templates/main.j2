@@ -1,0 +1,158 @@
+<?php
+
+// uncomment the following to define a path alias
+// Yii::setPathOfAlias('local','path/to/local-folder');
+Yii::setPathOfAlias('editable', dirname(__FILE__) . '/../extensions/x-editable');
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
+// This is the main Web application configuration. Any writable
+// CWebApplication properties can be configured here.
+return array(
+    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'name' => 'Hub',
+    'theme' => 'simple',
+
+    // preloading 'log' component
+    'preload' => array('log'),
+    //Language Setting
+    'language' => 'en',
+    // autoloading model and component classes
+    'import' => array(
+        'application.models.*',
+        'application.models.HubActiveRecord.php',
+        'application.modules.*',
+        'application.components.*',
+        'application.extensions.*',
+        'application.extensions.EWideImage.*',
+        'application.extensions.popup.*',
+        'application.extensions.newgrid.*',
+        'application.extensions.SeleniumTestCase.php',
+        'application.libraries.shared.*',
+        'application.libraries.auditLog.*',
+        'application.libraries.utils.*',
+        'application.modules.hub_services.models.*',
+        'application.extensions.x-editable.*' //easy include of editable classes
+    ),
+
+    'modules' => array(
+        // uncomment the following to enable the Gii tool
+
+//        'gii' => array(
+//            'class' => 'system.gii.GiiModule',
+//            'password' => 'gii',
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+//            'ipFilters' => array(
+//                '127.0.0.1',
+//                '::1',
+//                '192.168.250.240'),
+//        ),
+        'refundLimits',
+    //'hub_services',
+    // 'Setup',
+//        'Client',
+    ),
+    // application components
+    'components' => array(
+//        'assetManager' => array(
+//            'linkAssets' => true,
+//        ),
+        'user' => array(
+            'class' => 'application.components.EWebUser',
+            // enable cookie-based authentication
+            'allowAutoLogin' => false,
+            'authTimeout' => 1800, //timeout in seconds after which user is logged out if inactive.
+        ),
+        // uncomment the following to enable URLs in path-format
+        'urlManager' => array(
+            'class' => 'application.components.UrlManager',
+            'urlFormat' => 'path',
+            //'showScriptName'=>false,
+            'rules' => array(
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                'index/<.+>' => '',
+                'index' => '',
+                '<<script>.*>' => array('', '', 'caseSensitive' => false),
+                '<language:(de|tr|en)>/' => 'site/index',
+                '<language:(de|tr|en)>/<action:(contact|login|logout)>/*' => 'site/<action>',
+                '<language:(de|tr|en)>/<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<language:(de|tr|en)>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<language:(de|tr|en)>/<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
+            ),
+        ),
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.Bootstrap',
+        ),
+        //X-editable config
+        'editable' => array(
+            'class' => 'application.extensions.x-editable.EditableConfig',
+            'form' => 'bootstrap', //form style: 'bootstrap', 'jqueryui', 'plain'
+            'mode' => 'popup', //mode: 'popup' or 'inline'
+            'defaults' => array(
+                //default settings for all editable elements
+                'emptytext' => 'Click to edit'
+            )
+        ),
+
+        'db' => array(
+            'connectionString' =>'mysql:host={{DBHOST}};dbname=hub_{{item.countrycode}}',
+            'emulatePrepare' => true,
+            'username' => '{{item.applicationconf.dbuser}}',
+            'password' => '{{item.applicationconf.dbpassword}}',
+            'charset' => 'utf8',
+            'enableProfiling' => true,
+            'enableParamLogging' => true,
+        ),
+
+
+        //Archive database
+        //Was added for settlement purposes
+//        'dbArchive' => array(
+//            'connectionString' => 'mysql:host=192.168.254.62;dbname=hub4_2_Archive',
+//            'emulatePrepare' => true,
+//            'username' => 'cellulant',
+//            'password' => 'cellulant',
+//            'charset' => 'utf8',
+//            'class' => 'CDbConnection'
+//        ),
+        'errorHandler' => array(
+            // use 'site/error' action to display errors
+            'errorAction' => 'site/error',
+        ),
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning',
+                ),
+                array(
+                    'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                    'ipFilters' => array('127.0.0.1','::1'),
+                ),
+            ),
+        ),
+        'request' => array(
+            'class' => 'HttpRequest',
+            'enableCsrfValidation' => true,
+            'enableCookieValidation' => true,
+            'noCsrfValidationRoutes' => array(
+                'cardCallBack/index',
+                'site/login'
+            ),
+        ),
+        'curl' => array(
+            'class' => 'ext.Curl',
+        ),
+    ),
+    'params' => CMap::mergeArray(
+            require ('extras/core.php'), require ('extras/users.php'),
+            require ('extras/settlement.php'), require ('extras/fsm.php'),
+            require ('extras/system.php'), require ('extras/reconcliation.php'),
+            require ('hub_services/clientRegistration.php'), require ('extras/email.php'),
+            require ('hub_services/vouchers.php'), require ('hub_services/services.php'),
+            require ('extras/reports.php'), require ('extras/signup.php'), require ('extras/imsi.php'),
+            require ('extras/upperFooterDescriptions.php'), require ('extras/countryUrls.php'),
+            require ('extras/languages.php')
+    ),
+);

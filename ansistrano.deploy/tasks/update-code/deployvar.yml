@@ -1,0 +1,50 @@
+---
+- name : move var_www_backup .tar to www
+  copy:
+    dest: "{{ansistrano_var_to}}"
+    src:  "{{ ansistrano_var_archived_file }}"
+    remote_src: yes
+  when:  ansible_eth1.ipv4.address  == '192.168.0.254'
+
+- name: Unarchive | Unarchive source
+  unarchive:
+    copy: no
+    src: "{{ ansistrano_var_to }}/{{ansistrano_var_archived_fileb3}}-{{anistrano_current_day}}-{{anistrano_current_month}}-19.tar.gz"
+    dest: "{{ansistrano_var_to}}"
+  when:  ansible_eth1.ipv4.address  == '192.168.0.254'
+
+- name: Unarchive | Delete archived file
+  file:
+    path: "{{ ansistrano_var_to }}/{{ansistrano_var_archived_fileb3}}-{{anistrano_current_day}}-{{anistrano_current_month}}-19.tar.gz"
+    state: absent
+
+- name : move apps_backup .tar to www
+  copy:
+    dest: "{{ansistrano_apps_to}}"
+    src:  "{{ ansistrano_apps_archived_file }}"
+    remote_src: yes
+  when:  ansible_eth1.ipv4.address  == '192.168.0.3'
+
+- name: Unarchive | Unarchive source
+  unarchive:
+    copy: no
+    src: "{{ ansistrano_apps_to }}/apps-{{anistrano_current_day}}-{{anistrano_current_month}}-19.tar.gz"
+    dest: "{{ansistrano_apps_to}}"
+  when:  ansible_eth1.ipv4.address  == '192.168.0.3'
+
+- name: Unarchive | Delete archived file
+  file:
+    path: "{{ ansistrano_apps_to }}/apps-{{anistrano_current_day}}-{{anistrano_current_month}}-19.tar.gz"
+    state: absent
+
+- name: copy the script first
+  copy: 
+    src:  ../../creatLogs.sh 
+    dest: /tmp/creatLogs.sh
+    mode: 755
+
+- name: now do something
+  command: sh /tmp/creatLogs.sh {{item.name}}
+  with_items: 
+    - "{{ ansistrano_core_countries }}"
+  sudo: yes

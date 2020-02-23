@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Files to Handle Failures in Publishing-->
+    <!--Convention is: Replace '.' in Queue Name with '_'-->
+    <entry key="FailedRetriesFile">/var/log/applications/{{item.countrycode}}/hub/failedPublishes/IN_{{item.countrycode|upper}}_CPG_STATUSPUSHER_RETRIES.txt</entry>
+
+    <!--Queues-->
+    <entry key="FrameworkQueue">IN.{{item.countrycode|upper}}.CPG.STATUSPUSHER</entry>
+    <entry key="RetriesQueue">IN.{{item.countrycode|upper}}.CPG.STATUSPUSHER.RETRIES</entry>
+
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">/var/log/applications/{{item.countrycode}}/hub/statuspusher/{{item.countrycode}}_statuspusher_info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/{{item.countrycode}}/hub/statuspusher/{{item.countrycode}}_statuspusher_error.log</entry>
+    <entry key="DebugLogFile">/var/log/applications/{{item.countrycode}}/hub/statuspusher/{{item.countrycode}}_statuspusher_debug.log</entry>
+
+    <!--Enviro{{item.countrycode}}ent the Application is Running in-->
+    <entry key="Env">test</entry>
+    <entry key="CountryCode">{{item.countrycode|upper}}</entry>
+    <entry key="ApplicationName">STATUSPUSHER</entry>
+
+    <!--RabbitMQ tests-->
+    <entry key="RabbitMQHost">{{MQHOST}}</entry>
+    <entry key="RabbitMQPort">{{MQPORT}}</entry>
+    <entry key="RabbitMQUserName">{{item.applicationconf.mquser}}</entry>
+    <entry key="RabbitMQPassword">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    <!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry>
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_{{item.countrycode}}</entry>
+    <entry key="DBUsername">{{item.applicationconf.dbuser}}</entry>
+    <entry key="DBPassword">{{item.applicationconf.dbpassword}}</entry>
+    <entry key="DBMaxConnections">5</entry>
+
+    <!--Statuses-->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnProcessedStatus">2</entry>
+
+    <!--The Maximum Number of Records we Can Insert in Batch-->
+    <entry key="MaximumBatchInsertSize">50</entry>
+
+    <!--Message Retry Configs-->
+    <entry key="MaxNoOfSends">5</entry>
+    <entry key="TimeToNextSend">5000</entry>
+
+    <!--comment>Daemon operation settings.</comment-->
+    <entry key="HTTP_SUCCESS">200</entry>
+    <entry key="CONNECTION_TIMEOUT">20000</entry>
+    <entry key="READ_TIMEOUT">105000</entry>
+    <entry key="NUM_OF_CHILDREN_THREADS">2</entry>
+    <entry key="SLEEP_NUMBER_OF_SENDS">10000</entry>
+    <entry key="DEFAULT_LANGUAGE">EN</entry>
+
+
+    <!-- Status pusher payload formulator and posting script -->
+    <entry key="WrapperScript">http://{{statuspusherWrapper}}:{{item.countryport}}/hub/services/wrappers/StatusPusherWrappers/</entry>
+    <entry key="ERROR_REPORTING_API">{{REPORTING_SERVICE_API}}</entry>
+
+    <!-- Status codes to invoke the API -->
+    <entry key="PaymentFailedCode">138</entry>
+    <entry key="PaymentAcceptedCode">140</entry>
+    <entry key="PaymentRejectedCode">141</entry>
+    <entry key="PaymentEscalatedCode">219</entry>
+    <entry key="UnknownStatusCode">103</entry>
+    <entry key="PendingReversalCode">179</entry>
+    <entry key="TransactionManuallyFailedCode">216</entry>
+    <entry key="TransactionManuallySuccessfulCode">217</entry>
+    <!-- Status codes returned used to translate -->
+    <entry key="PaymentAcceptedPushCode">183</entry>
+    <entry key="PaymentRejectedPushCode">180</entry>
+
+    <!-- Statuses that are to be picked for pushing -->
+    <entry key="StatusToPush">103,140,141,219,179,216,217</entry>
+
+    <!-- Same as the one on the Status Pusher Wrapper config -->
+    <entry key="SuccessfullyDelivered">188</entry>
+    <entry key="FailedToDeliver">189</entry>
+
+    <!-- Message statuses -->
+    <entry key="ProcessedStatus">1</entry>
+    <entry key="UnprocessedStatus">0</entry>
+    <entry key="FailedStatus">3</entry>
+    <entry key="EscalatedStatus">103</entry>
+
+    <!-- Time is in Seconds -->
+    <!-- Time used to refresh the information from the ErrorReportingHandler.java file-->
+    <entry key="RefreshUrlsInterval">60</entry>
+
+    <!-- Time before the next try of a record -->
+    <entry key="NextSendInterval">60</entry>
+    <!--  Time before the push try period times out-->
+    <entry key="PushAckTimeoutPeriod">172800</entry>
+
+    <!-- Secret Key and Intialization vector used to decode encrypted passwords -->
+    <entry key="IntializationVector">8228b9a98ca15318</entry>
+    <entry key="EncryptionKey">3c6e0b8a9c15224a</entry>
+
+    <!--Timeouts in Milliseconds-->
+    <entry key="ConnectionTimeout">5000</entry>
+    <entry key="SocketTimeout">5000</entry>
+
+</properties>

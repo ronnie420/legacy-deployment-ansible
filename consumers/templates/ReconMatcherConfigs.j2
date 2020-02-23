@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <!--Queues-->
+    <entry key="ExtractsQueue">IN.{{item.countrycode|upper}}.CPG.RECON.EXTRACTS</entry>
+
+    <!--No. of Threads-->
+    <entry key="NumberOfChannelThreads">3</entry>
+    <entry key="NumberOfWorkerThreads">3</entry>
+
+    <!-- Log configs (use full paths to the log files to specify location) -->
+    <entry key="InfoLogLevel">INFO</entry>
+    <entry key="ErrorLogLevel">ERROR</entry>
+    <entry key="DebugLogLevel">DEBUG</entry>
+    <entry key="InfoLogFile">/var/log/applications/{{item.countrycode}}/hub/reco{{item.countrycode}}atcher/{{item.countrycode}}_reco{{item.countrycode}}atcher_info.log</entry>
+    <entry key="ErrorLogFile">/var/log/applications/{{item.countrycode}}/hub/reco{{item.countrycode}}atcher/{{item.countrycode}}_reco{{item.countrycode}}atcher_error.log</entry>
+    <entry key="DebugLogFile">/var/log/applications/{{item.countrycode}}/hub/reco{{item.countrycode}}atcher/{{item.countrycode}}_reco{{item.countrycode}}atcher_debug.log</entry>
+
+    <!--Enviro{{item.countrycode}}ent the Application is Running in-->
+    <entry key="Env">{{APPLICATION_ENV}}</entry>
+    <entry key="CountryCode">{{item.countrycode|upper}}</entry>
+
+    <!--RabbitMQ tests-->
+    <entry key="RabbitMQHost">{{MQHOST}}</entry>
+    <entry key="RabbitMQPort">{{MQPORT}}</entry>
+    <entry key="RabbitMQUserName">{{item.applicationconf.mquser}}</entry>
+    <entry key="RabbitMQPassword">{{item.applicationconf.mqpassword}}</entry>
+    <entry key="RabbitMQQoS">1</entry>
+
+    <!--DB Configs-->
+    <entry key="DBHost">{{DBHOST}}</entry>
+    <entry key="DBPort">{{DBPORT}}</entry>
+    <entry key="DBName">hub_mw</entry>
+    <entry key="DBUsername">{{item.countrycode|upper}}_recoMatcher</entry>
+    <entry key="DBPassword">sJYT6teuUhF4AEmS</entry>
+    <entry key="DBMaxConnections">5</entry>
+
+    <!--Time Before we Try to Match a Raw Extract Record Again -->
+    <entry key="NextTryInterval">20</entry>
+
+    <!-- Raw Extracts Processing Statuses -->
+    <entry key="ProcessedTransferStatus">1</entry>
+    <entry key="DuplicateTransferStatus">2</entry>
+    <entry key="UnprocessedTransferStatus">0</entry>
+    <entry key="FailedTransferStatus">3</entry>
+
+    <!-- Structured Extracts Match Statuses -->
+    <entry key="ProcessedMatchStatus">1</entry>
+    <entry key="UnprocessedMatchStatus">2</entry>
+
+    <!--Number of Records to Fetch from DB-->
+    <entry key="BucketSize">1000</entry>
+
+</properties>
